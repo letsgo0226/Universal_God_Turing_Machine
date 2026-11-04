@@ -237,3 +237,7 @@ A trace reaching its execution limit does **not** solve the halting problem, and
 ### Reproducible cross-language verification
 
 Run `python3 tools/test_differential.py` from the repository root with Python 3 and Node.js. It replays 120 deterministic programs in the browser JavaScript and the independent Python verifier, compares the complete finite trace objects, tests 960 deliberately altered certificates, and checks 40 G257 roundtrips. See [full methodology](docs/VERIFICATION.md) and [machine-readable local results](docs/verification-results.json). `STEP_LIMIT` is not a proof of nontermination.
+
+## Where We Will Be Going: a proposed ethical research program
+
+The UGTM project's proposed [truth–exploration–care charter](docs/WHERE_WE_WILL_BE_GOING.md) and [public-benefit roadmap](docs/PUBLIC_BENEFIT_ROADMAP.md) distinguish empirical computation from speculative metaphysics. They emphasize independently verifiable knowledge, open education, voluntary consent, and shelter for vulnerable life. These proposals do not establish supernatural claims or mathematical immortality.
