@@ -223,3 +223,13 @@ As with any source code, users should inspect it before execution and run it in 
 ## Summary
 
 The Universal God Turing Machine is a compact, executable demonstration of how a fixed-point combinator can supply anonymous recursion to a complete Brainfuck-8 interpreter. Its built-in tests verify closed computation, byte input and output, loop matching, and the declared instruction set. Its JSON certificate also states the boundaries of the result: universality belongs to the idealized machine model, while the concrete Python process remains finite and does not prove the stronger theorems sometimes associated with self-reference and computability.
+
+## Verifiable Computation Lab (experimental)
+
+UGTM is the **umbrella architecture** for the [browser-based verification lab](docs/index.html) and the [G257/ATGC finite selector](lfp_atgc_tm_2kb.sh). This integration keeps both original executable cores unchanged.
+
+The lab provides bounded Brainfuck-8 replay, JSON traces, a [standalone Python verifier](tools/verify_trace.py), and [browser smoke tests](tools/test_browser.js). Run `python3 tools/verify_trace.py --self-test` to inspect the replay verifier's positive and tamper-rejection tests.
+
+[Deployment workflow](.github/workflows/ugtm-lab-pages.yml) · [Lab documentation](docs/README.md). GitHub Pages hosting requires the workflow to complete successfully; a repository file alone does not mean the site is published.
+
+A trace reaching its execution limit does **not** solve the halting problem, and reversible G257 encoding does not prove a general semantic fixed point.
