@@ -38,3 +38,26 @@ assert.equal(vm.runInContext('G(new TextEncoder().encode("S")).toString()', ctx)
 const certificate = vm.runInContext('simulate("++++++++[>++++++++++<-]>+++.",new Uint8Array(),3000)', ctx);
 fs.writeFileSync('/tmp/ugtm-browser-certificate.json', JSON.stringify(certificate));
 console.log('PASS: 5 browser traces, 5 tampered rejected, G257 S=341');
+
+/*
+ * Render executes this exact smoke test as its static-site build command.
+ * After all assertions pass, write provenance for the published static
+ * artifact. This is an informational build marker, not a signed attestation.
+ */
+if (process.env.RENDER === 'true') {
+  const commit = String(process.env.RENDER_GIT_COMMIT || '');
+  if (!/^[0-9a-f]{40}$/.test(commit)) {
+    throw new Error('RENDER_GIT_COMMIT missing or invalid: refusing an untraceable Render build');
+  }
+  const provenance = {
+    schema: 'ugtm-site-build-v1',
+    provider: 'Render',
+    source_repository: 'letsgo0226/Universal_God_Turing_Machine',
+    source_branch: process.env.RENDER_GIT_BRANCH || 'main',
+    source_commit_sha: commit,
+    built_at_utc: new Date().toISOString(),
+    note: 'Build provenance is informational, not a cryptographic signature or proof of mathematical correctness.'
+  };
+  fs.writeFileSync('docs/build-info.json', JSON.stringify(provenance, null, 2) + '\n');
+  console.log('UGTM_BUILD_PROVENANCE_SHA=' + commit);
+}
