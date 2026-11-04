@@ -1,25 +1,24 @@
-name: UGTM Verifiable Computation Lab
+name: UGTM Continuous Verification and Optional GitHub Pages
+
 on:
   push:
     branches: [main]
-    paths:
-      - 'docs/**'
-      - 'tools/**'
-      - '.github/workflows/ugtm-lab-pages.yml'
-      - 'Universal_God_Turing_Machine.sh'
-      - 'lfp_atgc_tm_2kb.sh'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
 concurrency:
-  group: ugtm-pages
+  group: ugtm-ci-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
-  verify-and-build:
+  verify:
+    name: Verify both cores and cross-language trace replay
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Verify unchanged UGTM and ATGC reference cores
@@ -36,16 +35,70 @@ jobs:
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
+      - name: Publish verification summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## UGTM bounded verification'
+            echo ''
+            echo 'Reference core and finite cross-language tests are checked by the preceding step.'
+            echo 'A successful run is **not** a proof of the halting problem or personal immortality.'
+            echo 'Research ethics charter: [Where We Will Be Going](docs/WHERE_WE_WILL_BE_GOING.md).'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  pages-status:
+    name: Detect optional GitHub Pages (does not block verification)
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    outputs:
+      enabled: ${{ steps.detect.outputs.enabled }}
+    steps:
+      - name: Check whether Pages is configured for GitHub Actions
+        id: detect
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --silent --show-error --location --output /tmp/ugtm-pages-status.json --write-out '%{http_code}' --header "Accept: application/vnd.github+json" --header "Authorization: Bearer ${GH_TOKEN}" --header "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")"
+          if [[ "$status" == 404 ]]; then
+            echo 'enabled=false' >> "$GITHUB_OUTPUT"
+            echo "::notice::GitHub Pages is not enabled. CI passed; Render is the active publisher. To enable optional Pages, select GitHub Actions in Settings > Pages."
+          elif [[ "$status" == 200 ]]; then
+            mode="$(python3 -c 'import json; print(json.load(open("/tmp/ugtm-pages-status.json")).get("build_type",""))')"
+            if [[ "$mode" == workflow ]]; then
+              echo 'enabled=true' >> "$GITHUB_OUTPUT"
+            else
+              echo 'enabled=false' >> "$GITHUB_OUTPUT"
+              echo "::notice::Pages build source is not GitHub Actions; optional Pages publish skipped."
+            fi
+          else
+            echo "::error::GitHub Pages status query returned HTTP ${status}"
+            exit 1
+          fi
+
+  deploy-pages:
+    name: Publish optional GitHub Pages
+    if: github.event_name != 'pull_request' && needs.pages-status.outputs.enabled == 'true'
+    needs: [verify, pages-status]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: verify-and-build
-    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
