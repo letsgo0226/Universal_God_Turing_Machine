@@ -7,8 +7,11 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Every day at 08:17 Taiwan time (UTC+08); verification only.
+    # 08:17 Asia/Taipei: original verification and Render audit; no Pages update.
     - cron: '17 0 * * *'
+    # 10:13 Asia/Taipei: Pages snapshot, after the 09:53 cognitive memory cycle.
+    # GitHub Actions scheduled triggers can be delayed or skipped.
+    - cron: '13 2 * * *'
 
 permissions:
   contents: read
@@ -59,7 +62,7 @@ jobs:
 
   pages-status:
     name: Detect optional GitHub Pages (does not block verification)
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '13 2 * * *')
     needs: verify
     runs-on: ubuntu-latest
     permissions:
