@@ -36,6 +36,8 @@ jobs:
           python3 -c 'import json; r=json.load(open("/tmp/atgc.json")); assert r["prototype"]["code"]==341 and r["candidates"]==387'
           python3 tools/verify_trace.py --self-test
           node tools/ai_seed.js --self-test
+          node tools/seed_cognition.js --self-test
+          node tools/seed_github_ledger.js --self-test
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
@@ -98,6 +100,7 @@ jobs:
     permissions:
       contents: read
       pages: write
+      issues: read
       id-token: write
     environment:
       name: github-pages
@@ -105,8 +108,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Generate bounded seed status for optional Pages mirror
-        run: node tools/ai_seed.js --write
+      - name: Generate bounded research and academic snapshots for GitHub Pages
+        run: |
+          node tools/ai_seed.js --write
+          node tools/seed_scholar.js --write
+      - name: Read last verified GitHub-native memory ledger entry
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/seed_github_ledger.js --read
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
