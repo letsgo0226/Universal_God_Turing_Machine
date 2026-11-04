@@ -42,7 +42,9 @@ jobs:
           node tools/seed_cognition.js --self-test
           node tools/seed_github_ledger.js --self-test
           node tools/seed_literature.js --self-test
+          node tools/seed_cosmic.js --self-test
           python3 tools/seed_fulltext.py --self-test
+          python3 tools/seed_reader.py --self-test
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
@@ -117,6 +119,7 @@ jobs:
         run: |
           node tools/ai_seed.js --write
           node tools/seed_scholar.js --write
+          node tools/seed_cosmic.js --write
       - name: Read last verified GitHub-native memory ledger entry
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -129,6 +132,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 tools/seed_fulltext.py --read
+      - name: Read last evidence-grounded academic reader evaluation
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/seed_reader.py --read
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
