@@ -39,6 +39,13 @@ const certificate = vm.runInContext('simulate("++++++++[>++++++++++<-]>+++.",new
 fs.writeFileSync('/tmp/ugtm-browser-certificate.json', JSON.stringify(certificate));
 console.log('PASS: 5 browser traces, 5 tampered rejected, G257 S=341');
 
+// Generate a bounded, inspectable AI Seed research report for the Render static site.
+// This has no network calls, model inference, source mutation or autonomous replication.
+const seed = require('./ai_seed.js');
+seed.selfTest();
+seed.writeReport();
+console.log('UGTM_AI_SEED_STATUS=docs/seed/status.json');
+
 /*
  * Render executes this exact smoke test as its static-site build command.
  * After all assertions pass, write provenance for the published static
