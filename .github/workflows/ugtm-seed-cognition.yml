@@ -1,0 +1,65 @@
+name: UGTM AI Seed — GitHub Native Cognitive Memory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/seed_cognition.js'
+      - 'tools/seed_github_ledger.js'
+      - 'research/seed/cognitive_config.json'
+      - '.github/workflows/ugtm-seed-cognition.yml'
+  schedule:
+    # Every day 09:53 Asia/Taipei; GitHub scheduled jobs may be delayed.
+    - cron: '53 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ugtm-seed-cognition-ledger
+  cancel-in-progress: false
+
+jobs:
+  cognitive-ledger:
+    name: Bounded Generator Reflector Curator and GitHub memory archive
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify protected original cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Verify offline cognition and issue boundaries
+        run: |
+          node tools/ai_seed.js --self-test
+          node tools/seed_cognition.js --self-test
+          node tools/seed_github_ledger.js --self-test
+          node tools/seed_scholar.js --self-test
+      - name: Archive one bounded cognitive cycle to GitHub issue
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/seed_github_ledger.js --archive
+      - name: Preserve portable memory snapshot for debugging
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-github-native-cognition
+          path: docs/seed/cognition.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Summarize review requirements
+        shell: bash
+        run: |
+          {
+            echo '## UGTM GitHub-native cognitive memory'
+            echo ''
+            echo 'ACE-inspired Generator / Reflector / Curator recorded a bounded, digest-linked public memory cycle.'
+            echo 'Persistent ledger: [GitHub Issue #1](https://github.com/letsgo0226/Universal_God_Turing_Machine/issues/1).'
+            echo 'The issue comment is research metadata, not a digital signature or physical phenomenon.'
+            echo 'No code, research core, scholarly authorship or public website was automatically changed.'
+            echo 'Human approval is mandatory for any new project execution, model credentials or academic publication.'
+          } >> "$GITHUB_STEP_SUMMARY"
