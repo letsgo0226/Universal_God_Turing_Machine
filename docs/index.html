@@ -48,3 +48,4 @@ $("encode").onclick=()=>{try{const b=enc.encode($("payload").value);if(b.length>
 $("select").onclick=()=>{const C=[];for(let e=1;e<=100000;e++){let n=BigInt(e),a=[];while(n>1n){const r=n%257n;if(r===0n){a=null;break;}a.unshift(Number(r)-1);n/=257n;}if(a&&a.includes(83)&&G(a)===BigInt(e))C.push({e:e,b:a,cost:H(a)+.01*a.length});}const min=Math.min(...C.map(x=>x.cost)),W=C.filter(x=>Math.abs(x.cost-min)<=1e-12).sort((a,b)=>a.b.length-b.b.length||a.e-b.e),w=W[0];$("godel").textContent=JSON.stringify({N:100000,candidates:C.length,selected_godel:w.e,program_hex:hex(w.b),unique:W.length===1,scope:"finite-stage selector, not a halting oracle or executable self-rule"},null,2);};
 $("run").click();
 </script></body></html>
+<!-- UGTM auto-deploy probe: 2026-11-05; nonfunctional HTML-only marker; no original UGTM or ATGC code was changed. -->
