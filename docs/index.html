@@ -7,6 +7,7 @@
 <section class="card"><h2>01 / UGTM 執行與紀錄</h2><p>下方是對<a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/Universal_God_Turing_Machine.sh">原始 UGTM 程式</a>指令語義的有限步數重播，並非在瀏覽器中直接執行 Python Z 組合子。</p><label for="program">Brainfuck 原始碼</label><textarea id="program">++++++++[>++++++++++<-]>+++.</textarea><div class="grid"><div><label for="in">UTF-8 輸入</label><input id="in" value=""></div><div><label for="limit">步數上限（1–10000）</label><input id="limit" type="number" min="1" max="10000" value="3000"></div></div><div><button class="primary" id="run">執行並產生 JSON 證據</button><button id="sample">S 範例</button><button id="echo">A 輸入範例</button><button id="download">下載證據</button></div><p id="result">尚未執行。</p><pre id="steps">—</pre></section>
 <section class="card"><h2>02 / 重播驗證</h2><p>可貼上剛才下載的 JSON，或直接帶入。跨語言獨立驗證請使用<a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/tools/verify_trace.py">Python 驗證器</a>。</p><label for="doc">證據 JSON</label><textarea id="doc" placeholder="貼上 ugtm-trace-v1 格式的 JSON"></textarea><div><button id="fill">帶入最新證據</button><button class="primary" id="verify">重播驗證</button></div><p id="checked">尚未驗證。</p></section>
 <section class="card"><h2>03 / ATGC：G257 與有限選擇器</h2><p>根據<a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/lfp_atgc_tm_2kb.sh">現有 ATGC 原型</a>展示可逆編碼與經驗 Shannon 熵。編解碼恆等式並非語義自指定理。</p><label for="payload">UTF-8 字串（最多 128 bytes）</label><input id="payload" value="S"><div><button class="primary" id="encode">G257 編碼 / 解碼</button><button id="select">有限搜尋 N=100000</button></div><pre id="godel">—</pre></section>
+<p id="deploy-provenance" style="font-size:13px">發布版本驗證：讀取中（僅供辨識網站原始碼版本，非數學證明）。</p>
 <p>研究限制：步數上限不構成不會停機的證明；JSON 紀錄不具數位簽章；不宣稱超可計算能力。原始核心檔案維持不變。<br><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine">檢視 GitHub 專案</a></p>
 <section class="card"><h2>04 / 重現性與測試報告</h2><p>已新增 Python / JavaScript 有限執行交叉測試、竄改偵測及 G257 編解碼測試。報告中的數字是有限、本機重現結果，不代表所有程式的正確性或停機判定。</p><p><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/docs/VERIFICATION.md">閱讀驗證方法與研究限制</a> · <a href="verification-results.json">檢視機器可讀的測試結果</a></p></section>
 <section class="card"><h2>05 / Where We Will Be Going</h2><p><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/docs/AUTOMATION.md">查看每日自動驗證、Render 與 Pages 部署狀態</a></p><p>我們的長期方向：以神聖作為理想、以星辰作為探索之路、以庇護作為目的。以下是哲學與倫理研究提案，不是關於永生、超可計算或星際生命的已證實主張。</p><p><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/docs/WHERE_WE_WILL_BE_GOING.md">閱讀研究憲章</a> · <a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/docs/PUBLIC_BENEFIT_ROADMAP.md">閱讀公共利益路線圖</a></p></section>
@@ -22,7 +23,20 @@ function equal(a,b){if(typeof a!==typeof b)return false;if(a&&typeof a==="object
 function check(doc){if(!doc||doc.schema!==SCHEMA||doc.reference_core_blob!==CORE)throw Error("版本不一致");const expected=simulate(doc.program,fromHex(doc.input_hex),doc.max_steps);if(!equal(doc,expected))throw Error("證據遭更動或狀態轉換不正確");return expected;}
 let last=null;function fail(id,e){$(id).className="fail";$(id).textContent="驗證失敗："+e.message;}
 $("run").onclick=()=>{try{last=simulate($("program").value,enc.encode($("in").value),Number($("limit").value));$("result").className=last.status==="HALTED"?"ok":"warn";$("result").textContent=last.status+" · "+last.steps+" steps · HEX "+(last.output_hex||"(empty)")+" · UTF-8 "+dec.decode(fromHex(last.output_hex));$("steps").textContent=JSON.stringify(last.trace.slice(0,30),null,1)+(last.steps>30?"\n…其餘步驟包含在完整 JSON 中":"");}catch(e){last=null;fail("result",e);}};
-$("sample").onclick=()=>{$("program").value="++++++++[>++++++++++<-]>+++.";$("in").value="";$("run").click();};
+$("sample").onclick=()=>{$("program").value="++++++++[>++++++++++<-]>+++.";$("in").value="";
+if (typeof fetch === 'function') {
+  fetch('./build-info.json', {cache:'no-store'})
+    .then(r => { if (!r.ok) throw Error('not published'); return r.json(); })
+    .then(info => {
+      const p = $('deploy-provenance');
+      const sha = info && typeof info.source_commit_sha === 'string' ? info.source_commit_sha : '';
+      if (!/^[0-9a-f]{40}$/.test(sha)) throw Error('invalid commit');
+      p.textContent = '實際發布版本：' + sha.slice(0,12) + ' · Render 建置時間：' + info.built_at_utc + '。這是來源識別，不是獨立數學證明。';
+    })
+    .catch(() => { $('deploy-provenance').textContent = '發布版本資訊暫無法取得；請以 Render 部署紀錄核對。'; });
+}
+
+$("run").click();};
 $("echo").onclick=()=>{$("program").value=",.";$("in").value="A";$("run").click();};
 $("fill").onclick=()=>{if(last)$("doc").value=JSON.stringify(last,null,2);};
 $("verify").onclick=()=>{try{const d=check(JSON.parse($("doc").value));$("checked").className="ok";$("checked").textContent="驗證通過："+d.status+" / "+d.steps+" 步 / "+d.output_hex;}catch(e){fail("checked",e);}};
