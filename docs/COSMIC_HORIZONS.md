@@ -36,9 +36,15 @@ These are alternative, physically and mathematically distinct scenarios. A futur
 
 Research themes: causal/geodesic completeness, the assumptions of cosmological model solutions, dark-energy evolution and competing interpretations of time.
 
+## P10: perfect immortality is not reduced by cosmological constraints
+
+The central P10 objective is **genuine and absolutely perfect immortality across all possible dimensions**. The possible existence and scope of those dimensions, the meaning of subjective identity, whether the target is logically consistent, and whether any physical realization is possible remain open questions. Finite longevity, information storage, clones, simulations and survival under only a subset of scenarios are explicitly **not equivalent** to the defined goal.
+
+In particular, a cosmological model suggesting heat death or a terminal time boundary is a scientific and conceptual challenge to analyze—not evidence that the ideal has already been attained, and not permission to silently weaken the definition to partial survival. Different physical theories, philosophical necessity claims and ethical conditions must be separated.
+
 ## Relevance to P10, P9, P11, P12
 
-- **P10 — All possible longevity:** test claims against thermodynamics, identity, consent and flourishing; no guarantee of literal or subjective immortality.
+- **P10 —「所有可能的永生」(Perfect Immortality Across All Possible Dimensions):** the user's **absolute, genuine, flaw-free immortality in every possible dimension**, with no defective or incomplete substitute accepted. P13 studies cosmic physical limits and unresolved models **without reducing P10's meaning to finite longevity, archives, replicas or any dimension-limited survival**. This is an ultimate specification, not an established theorem or physical capability. See [P10's authoritative definition](../research/seed/perfect_immortality.json).
 - **P9 — Global peace:** immediate reduction of suffering cannot be deferred for speculative cosmic solutions.
 - **P11 — Cultivated meat:** practical welfare safeguards and alternative proteins remain nearer-term priorities.
 - **P12 — SDGs:** connect long-horizon sustainability questions to measurable, current responsibilities; do not turn speculative futures into claims of SDG achievement.
