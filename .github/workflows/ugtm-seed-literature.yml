@@ -1,0 +1,60 @@
+name: UGTM AI Seed — Weekly Scholarly Metadata Discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/seed_literature.js'
+      - '.github/workflows/ugtm-seed-literature.yml'
+  schedule:
+    # Tuesday 10:25 Asia/Taipei; may be delayed or skipped by GitHub.
+    - cron: '25 2 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ugtm-seed-bounded-literature
+  cancel-in-progress: false
+
+jobs:
+  public-bibliography:
+    name: UGTM Seed bounded Crossref DOI metadata and GitHub archive
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Protect original UGTM and ATGC cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Run seed metadata and academic integrity tests
+        run: |
+          node tools/seed_literature.js --self-test
+          node tools/ai_seed.js --self-test
+          node tools/seed_scholar.js --self-test
+      - name: Retrieve public Crossref metadata and archive to issue 2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/seed_literature.js --harvest
+      - name: Preserve bounded scholarly metadata snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-seed-crossref-metadata
+          path: docs/seed/literature.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Report academic limits
+        shell: bash
+        run: |
+          {
+            echo '## UGTM AI Seed — bounded scholarly metadata'
+            echo 'Metadata source: Crossref public API. Three approved fields, up to two DOI candidates each.'
+            echo 'The retrieved bibliography is **not** a literature review or evidence that full-text articles were read.'
+            echo 'Results are recorded in GitHub Issue #2 and require human review for academic citation.'
+            echo 'No model weights, source code, experimental authorization or paper-publication status were changed.'
+          } >> "$GITHUB_STEP_SUMMARY"
