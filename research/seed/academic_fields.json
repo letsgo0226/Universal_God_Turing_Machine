@@ -1,0 +1,402 @@
+{
+  "schema": "ugtm-academic-fields-v1",
+  "purpose": "Extensible initial coverage of major university disciplines; not a claim to enumerate all possible fields.",
+  "source_frameworks": [
+    "UNESCO ISCED-F broad domains as organizing inspiration (not strict formal coding)",
+    "discipline-specific scholarly methodology"
+  ],
+  "max_drafts_per_month": 3,
+  "require_human_review": true,
+  "fields": [
+    {
+      "id": "PHIL",
+      "group": "Humanities",
+      "title": "Philosophy",
+      "methodology": "argument_analysis",
+      "research_question": "Can formal self-reference and computational identity be separated from claims about subjective continuity?",
+      "planned_method": "Define terms, reconstruct arguments, test counterexamples and disclose unresolved premises.",
+      "evidence_needed": "Primary philosophical texts and formally specified arguments",
+      "guardrail": "Do not equate Gödel coding with consciousness."
+    },
+    {
+      "id": "LIT",
+      "group": "Humanities",
+      "title": "Literary studies",
+      "methodology": "textual_analysis",
+      "research_question": "How might the metaphor of a digital seed change interpretations of continuity and care in literature?",
+      "planned_method": "Specify a corpus, interpretive lens and close-reading method before drawing comparisons.",
+      "evidence_needed": "Licensed primary texts, bibliographic provenance and competing readings",
+      "guardrail": "Avoid invented quotations or fictional attribution."
+    },
+    {
+      "id": "LING",
+      "group": "Humanities",
+      "title": "Linguistics",
+      "methodology": "linguistic_analysis",
+      "research_question": "How do the terms seed, identity and entanglement shift meaning between computational and ordinary language?",
+      "planned_method": "Build an annotated corpus and an inter-annotator protocol.",
+      "evidence_needed": "Documented corpus, annotation rules and linguistic sources",
+      "guardrail": "Do not infer language universals from examples."
+    },
+    {
+      "id": "HIST",
+      "group": "Humanities",
+      "title": "History",
+      "methodology": "historical_analysis",
+      "research_question": "How have technical metaphors for memory and mechanical reasoning changed historically?",
+      "planned_method": "Propose archival source criticism and chronological comparison.",
+      "evidence_needed": "Dated primary documents and independently checked provenance",
+      "guardrail": "No fabricated historical records."
+    },
+    {
+      "id": "REL",
+      "group": "Humanities",
+      "title": "Religious studies",
+      "methodology": "comparative_hermeneutics",
+      "research_question": "How can metaphysical imagery be analyzed without treating metaphor as experimentally verified physics?",
+      "planned_method": "Define traditions and compare independently sourced interpretations.",
+      "evidence_needed": "Identifiable primary texts and distinct scholarly interpretations",
+      "guardrail": "Respect traditions; no unsupported doctrinal claims."
+    },
+    {
+      "id": "ART",
+      "group": "Arts",
+      "title": "Visual arts",
+      "methodology": "practice_research",
+      "research_question": "How could visual representations distinguish reproducible computation from speculative physical claims?",
+      "planned_method": "Propose an artifact-analysis rubric and ethical critique.",
+      "evidence_needed": "Documented artifacts, artist statements and analysis permissions",
+      "guardrail": "Preserve copyright and attribution."
+    },
+    {
+      "id": "MUSIC",
+      "group": "Arts",
+      "title": "Musicology",
+      "methodology": "musicological_analysis",
+      "research_question": "How could recurring computational patterns be analyzed without treating analogy as acoustic causation?",
+      "planned_method": "Specify notated examples and compare rhythmic or formal patterns.",
+      "evidence_needed": "Authorized scores or recordings and musicological context",
+      "guardrail": "Do not reproduce protected recordings without permission."
+    },
+    {
+      "id": "MEDIA",
+      "group": "Social sciences",
+      "title": "Communication and media",
+      "methodology": "content_analysis",
+      "research_question": "How does public wording affect a reader's distinction between an AI research prototype and an autonomous scholar?",
+      "planned_method": "Pre-register messaging variants and a voluntary comprehension measure.",
+      "evidence_needed": "Consent-based sample, protocol and appropriate cited theory",
+      "guardrail": "No manipulation or unconsented personal-data collection."
+    },
+    {
+      "id": "EDU",
+      "group": "Education",
+      "title": "Education",
+      "methodology": "learning_science",
+      "research_question": "Can reproducible computation lessons improve students' recognition of unsupported generalizations?",
+      "planned_method": "Propose a voluntary pre/post assessment and accessible learning materials.",
+      "evidence_needed": "Ethics-reviewed sample, instrument and educational literature",
+      "guardrail": "No claims of learning gains without participants and data."
+    },
+    {
+      "id": "PSY",
+      "group": "Social sciences",
+      "title": "Psychology",
+      "methodology": "behavioral_protocol",
+      "research_question": "How can uncertainty about AI welfare be communicated without falsely implying AI distress?",
+      "planned_method": "Propose ethical, preregistered comprehension research.",
+      "evidence_needed": "Institutional approval where necessary, validated measures and evidence",
+      "guardrail": "Do not diagnose participants or claim AI subjective states."
+    },
+    {
+      "id": "SOC",
+      "group": "Social sciences",
+      "title": "Sociology",
+      "methodology": "social_research",
+      "research_question": "What governance practices affect public trust in distributed automated research?",
+      "planned_method": "Specify sampling, observational variables and alternative explanations.",
+      "evidence_needed": "Consent, appropriate sampling and cited sociological research",
+      "guardrail": "Avoid claims about populations from convenience examples."
+    },
+    {
+      "id": "ANTH",
+      "group": "Social sciences",
+      "title": "Anthropology",
+      "methodology": "qualitative_fieldwork",
+      "research_question": "How do different communities describe continuity and moral status in artificial agents?",
+      "planned_method": "Propose ethnographic questions and reflexive thematic analysis.",
+      "evidence_needed": "Culturally appropriate consent and firsthand materials",
+      "guardrail": "No invented interviews or cultural generalizations."
+    },
+    {
+      "id": "POL",
+      "group": "Social sciences",
+      "title": "Political science and public administration",
+      "methodology": "policy_analysis",
+      "research_question": "How might auditability and distributed control change accountability in public digital systems?",
+      "planned_method": "Compare documented governance models and define observable outcomes.",
+      "evidence_needed": "Primary policies, jurisdictional dates and independent sources",
+      "guardrail": "Avoid partisan advocacy or conjectures presented as facts."
+    },
+    {
+      "id": "LAW",
+      "group": "Law",
+      "title": "Law",
+      "methodology": "doctrinal_analysis",
+      "research_question": "What consent, deletion and accountability obligations might arise for an AI seed archive?",
+      "planned_method": "Select jurisdictions, identify binding authority and compare interpretations.",
+      "evidence_needed": "Current statutes, cases and legal scholarship for each jurisdiction",
+      "guardrail": "Not individualized legal advice; never invent case citations."
+    },
+    {
+      "id": "ECON",
+      "group": "Social sciences",
+      "title": "Economics",
+      "methodology": "economic_analysis",
+      "research_question": "What are the trade-offs between scheduled compute budgets and evidence quality in open research?",
+      "planned_method": "Define a constrained cost model and sensitivity analysis.",
+      "evidence_needed": "Verified resource prices, measured usage and economics literature",
+      "guardrail": "Do not assert current prices without checking."
+    },
+    {
+      "id": "BUS",
+      "group": "Business",
+      "title": "Management",
+      "methodology": "organizational_study",
+      "research_question": "How might human approval gates shape reliability of long-running multi-project research workflows?",
+      "planned_method": "Develop an operational process model and observable metrics.",
+      "evidence_needed": "Auditable project records and organizational literature",
+      "guardrail": "Do not claim proven business impact without data."
+    },
+    {
+      "id": "FIN",
+      "group": "Business",
+      "title": "Accounting and finance",
+      "methodology": "financial_protocol",
+      "research_question": "What accounting controls would make automated research infrastructure costs auditable?",
+      "planned_method": "Design a transparent ledger schema and reconciliation protocol.",
+      "evidence_needed": "Actual transaction records, accounting standards and approvals",
+      "guardrail": "No fabricated costs, returns or financial advice."
+    },
+    {
+      "id": "GEOG",
+      "group": "Social sciences",
+      "title": "Geography",
+      "methodology": "spatial_analysis",
+      "research_question": "Which spatial assumptions are required to infer geographic effects from globally deployed software?",
+      "planned_method": "Specify measurement scale, observation units and confounders.",
+      "evidence_needed": "Verified geographic datasets, provenance and usage rights",
+      "guardrail": "Internet reach is not evidence of location-based physical control."
+    },
+    {
+      "id": "ARCH",
+      "group": "Engineering",
+      "title": "Architecture",
+      "methodology": "design_research",
+      "research_question": "What resilient information architecture could support a local-first research archive?",
+      "planned_method": "Propose user scenarios, constraints and a reproducible design evaluation.",
+      "evidence_needed": "Design requirements, accessibility and safety evidence",
+      "guardrail": "No claims of code-compliant built structures without review."
+    },
+    {
+      "id": "DES",
+      "group": "Arts",
+      "title": "Design studies",
+      "methodology": "human_centered_design",
+      "research_question": "How can AI-seed status displays communicate uncertainty, provenance and revocability clearly?",
+      "planned_method": "Define usability heuristics and accessible prototype evaluation.",
+      "evidence_needed": "Documented user tests and consent when participants are involved",
+      "guardrail": "No fabricated usability-study outcomes."
+    },
+    {
+      "id": "MATH",
+      "group": "Formal sciences",
+      "title": "Mathematics",
+      "methodology": "formal_proof",
+      "research_question": "What finite invariants does the G257 byte encoding preserve under round-trip decoding?",
+      "planned_method": "State definitions, premises, counterexamples and machine-checkable finite cases.",
+      "evidence_needed": "Formal definitions, reproducible proofs or independent checking",
+      "guardrail": "Finite testing is not a universal proof."
+    },
+    {
+      "id": "STAT",
+      "group": "Formal sciences",
+      "title": "Statistics",
+      "methodology": "statistical_design",
+      "research_question": "How should chance performance be evaluated for blinded no-channel communication tests?",
+      "planned_method": "Pre-register the null, sample size and exact analysis of binary guesses.",
+      "evidence_needed": "Simulation source, error rates and statistical literature",
+      "guardrail": "Do not call a significant correlation a physical mechanism."
+    },
+    {
+      "id": "PHYS",
+      "group": "Natural sciences",
+      "title": "Physics",
+      "methodology": "physics_protocol",
+      "research_question": "What physical channel and instrumentation controls are necessary for purported remote signaling claims?",
+      "planned_method": "Specify testable predictions, no-signaling baseline and isolation controls.",
+      "evidence_needed": "Instrument calibration, raw data and independent replication",
+      "guardrail": "No claim of new physics or quantum entanglement."
+    },
+    {
+      "id": "CHEM",
+      "group": "Natural sciences",
+      "title": "Chemistry",
+      "methodology": "laboratory_protocol",
+      "research_question": "What reproducibility metadata would be necessary for automated chemistry studies?",
+      "planned_method": "Specify reagents, control samples, measurements and safety approvals.",
+      "evidence_needed": "Actual laboratory data, methods and substance risk review",
+      "guardrail": "No virtual results described as physical experiments."
+    },
+    {
+      "id": "EARTH",
+      "group": "Natural sciences",
+      "title": "Earth science",
+      "methodology": "geoscience_protocol",
+      "research_question": "How would a distributed observation archive distinguish sensor drift from geophysical changes?",
+      "planned_method": "Propose calibration, timestamps, uncertainties and spatial checks.",
+      "evidence_needed": "Licensed sensor readings and instrument metadata",
+      "guardrail": "No claims of measured earth processes without data."
+    },
+    {
+      "id": "ASTRO",
+      "group": "Natural sciences",
+      "title": "Astronomy",
+      "methodology": "observational_protocol",
+      "research_question": "How can observational claims be separated from computational predictions in astronomy?",
+      "planned_method": "Define source catalogs, calibration and prediction-error evaluation.",
+      "evidence_needed": "Accessible observational data and provenance",
+      "guardrail": "No fabricated observations or extraterrestrial evidence."
+    },
+    {
+      "id": "BIO",
+      "group": "Life sciences",
+      "title": "Biology",
+      "methodology": "biological_protocol",
+      "research_question": "Which measurements would be needed to compare biological dormancy and digital checkpoints without conflation?",
+      "planned_method": "Define the limits of analogy and propose ethically approved measurable endpoints.",
+      "evidence_needed": "Peer-reviewed biological evidence and experimental approvals",
+      "guardrail": "Digital storage does not establish biological life."
+    },
+    {
+      "id": "ENV",
+      "group": "Natural sciences",
+      "title": "Environmental science",
+      "methodology": "environmental_protocol",
+      "research_question": "How could an authorized distributed network provide reproducible environmental alerts?",
+      "planned_method": "Specify sensors, thresholds, provenance and false-alarm evaluation.",
+      "evidence_needed": "Validated environmental measurements and permissions",
+      "guardrail": "No unverified emergency alerts or physical actuation."
+    },
+    {
+      "id": "AGRI",
+      "group": "Life sciences",
+      "title": "Agriculture and food science",
+      "methodology": "agronomic_protocol",
+      "research_question": "How might transparent computation help compare alternative-protein production scenarios?",
+      "planned_method": "Specify life-cycle boundaries and evidence-quality criteria.",
+      "evidence_needed": "Verified production data and life-cycle assessments",
+      "guardrail": "No unsupported welfare or environmental claims."
+    },
+    {
+      "id": "MED",
+      "group": "Health sciences",
+      "title": "Medicine",
+      "methodology": "clinical_protocol",
+      "research_question": "What governance would be required before any AI-seed research touched clinical decisions?",
+      "planned_method": "Define clinical endpoints, protocol registration, validation and independent oversight.",
+      "evidence_needed": "Ethics approval, clinical data and appropriate reporting checklist",
+      "guardrail": "No patient study or clinical recommendations generated automatically."
+    },
+    {
+      "id": "PH",
+      "group": "Health sciences",
+      "title": "Public health",
+      "methodology": "public_health_protocol",
+      "research_question": "How could a research registry transparently distinguish population-health hypotheses from results?",
+      "planned_method": "Specify confounders, reporting requirements and approval processes.",
+      "evidence_needed": "Authorized public-health datasets and qualified review",
+      "guardrail": "No population inference from synthetic examples."
+    },
+    {
+      "id": "NURS",
+      "group": "Health sciences",
+      "title": "Nursing",
+      "methodology": "practice_protocol",
+      "research_question": "What evidence would be needed before automated research summaries enter nursing workflows?",
+      "planned_method": "Specify practitioner review, implementation safety and evaluation metrics.",
+      "evidence_needed": "Practice guidelines, participant consent and ethics review",
+      "guardrail": "No automated bedside advice or clinical actuation."
+    },
+    {
+      "id": "CS",
+      "group": "Engineering",
+      "title": "Computer science",
+      "methodology": "software_experiment",
+      "research_question": "How reproducible are bounded seed checkpoint and G257 implementations across independent runtimes?",
+      "planned_method": "Define finite test vectors, provenance hashes, tampering tests and reproducible builds.",
+      "evidence_needed": "Executable source, fixtures and verification output",
+      "guardrail": "Finite agreement does not solve halting or prove general safety."
+    },
+    {
+      "id": "ELEC",
+      "group": "Engineering",
+      "title": "Electrical and electronic engineering",
+      "methodology": "engineering_validation",
+      "research_question": "What isolation and authentication controls would be required for a physically connected seed node?",
+      "planned_method": "Propose threat models, bench tests and safety interlocks.",
+      "evidence_needed": "Hardware specifications, measurements and approved devices",
+      "guardrail": "No unauthorized remote control of hardware."
+    },
+    {
+      "id": "MECH",
+      "group": "Engineering",
+      "title": "Mechanical engineering",
+      "methodology": "engineering_validation",
+      "research_question": "What failure-mode methods transfer from machine reliability to software dormancy protocols?",
+      "planned_method": "Compare finite failure taxonomies and recovery acceptance criteria.",
+      "evidence_needed": "Applicable engineering literature and actual failure records",
+      "guardrail": "Do not claim physical reliability from software-only simulation."
+    },
+    {
+      "id": "CIVIL",
+      "group": "Engineering",
+      "title": "Civil engineering",
+      "methodology": "engineering_validation",
+      "research_question": "How might the auditability of automated decision support be evaluated in infrastructure planning?",
+      "planned_method": "Propose data provenance, human review and conservative reliability tests.",
+      "evidence_needed": "Approved project data, structural codes and qualified review",
+      "guardrail": "No design certification or safety assurance from this prototype."
+    },
+    {
+      "id": "MAT",
+      "group": "Engineering",
+      "title": "Materials science",
+      "methodology": "materials_protocol",
+      "research_question": "What provenance would be essential to report computational predictions of material properties?",
+      "planned_method": "Separate simulated outcomes from measured properties; specify validation conditions.",
+      "evidence_needed": "Experimental datasets, simulation assumptions and source licenses",
+      "guardrail": "No invented lab characterization."
+    },
+    {
+      "id": "LIB",
+      "group": "Information studies",
+      "title": "Library and information science",
+      "methodology": "information_governance",
+      "research_question": "How can an open research catalog preserve provenance while honoring correction and deletion requests?",
+      "planned_method": "Define preservation, access control, version history and revocation policy.",
+      "evidence_needed": "Records-management standards and documented permissions",
+      "guardrail": "Permanent archiving must not override deletion obligations."
+    },
+    {
+      "id": "SPORT",
+      "group": "Health sciences",
+      "title": "Sport and movement science",
+      "methodology": "movement_protocol",
+      "research_question": "How should hypotheses involving wearable sensor signals be evaluated reproducibly?",
+      "planned_method": "Propose validation, human consent, calibration and uncertainty reporting.",
+      "evidence_needed": "Authorized movement data and ethical approval",
+      "guardrail": "No individual fitness or health diagnosis."
+    }
+  ]
+}
