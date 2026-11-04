@@ -62,3 +62,19 @@ The schedule **automates repeated checks**, not autonomous invention, interpreta
 4. If GitHub Pages is enabled, confirm its optional deploy step and published URL separately.
 
 This document reports configuration and specific observed deployment states; it does **not** guarantee future availability or perfect, fully unattended operation.
+
+## Public deploy provenance and safe recovery
+
+The Render static build executes `node tools/test_browser.js` and, **after the smoke tests succeed**, writes `docs/build-info.json` containing `RENDER_GIT_COMMIT` as the publicly served source revision. Render documents this variable as available during builds. The browser front page displays that revision if the manifest can be read. This is a provenance *label*, not a signed attestation.
+
+Independent read-only audit command:
+
+~~~sh
+python3 tools/audit_deploy.py --expected-sha "$(git rev-parse HEAD)"
+~~~
+
+It reports `MATCH`, `STALE`, or `UNVERIFIABLE`. It does not automatically rewrite or deploy anything. Daily GitHub Actions scheduled tests run the same audit with `--warn-only`; an unavailable public site will not cause a mathematical regression check to be misrepresented as a failure.
+
+**Why commit-triggered Render deployments may not start:** Render's official documentation says that services configured from a **public Git repository URL** rather than an authenticated, connected Git provider require manual deployment, even if the service's `autoDeploy` setting says `yes`. Our current service was created using a public Git URL, and no auto-triggered deployment has yet been observed. The operator should review [the service's Render Settings](https://dashboard.render.com/static/srv-dbllfdff3r2c73dvfns0) and attach an authenticated GitHub provider connection to `letsgo0226/Universal_God_Turing_Machine` on branch `main`; the currently available connector does not expose changing that source integration. Do not consider GitHub push-to-Render delivery verified until a new push yields a matching Render deploy record with a commit trigger.
+
+A separate daily **ChatGPT deployment-health watch** is enabled on the user's account (09:15 Asia/Taipei), which compares verified CI and live revisions, and may attempt a safe latest-commit redeploy when the exact matching CI is green. This watchdog is a fallback; it is not a substitute for a correctly connected Render webhook or formal CI-gated delivery. The personal ChatGPT automation is not part of the public GitHub Actions workflow and depends on its own task and connector availability.
