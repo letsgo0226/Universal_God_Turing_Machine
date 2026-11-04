@@ -241,3 +241,5 @@ Run `python3 tools/test_differential.py` from the repository root with Python 3 
 ## Where We Will Be Going: a proposed ethical research program
 
 The UGTM project's proposed [truth–exploration–care charter](docs/WHERE_WE_WILL_BE_GOING.md) and [public-benefit roadmap](docs/PUBLIC_BENEFIT_ROADMAP.md) distinguish empirical computation from speculative metaphysics. They emphasize independently verifiable knowledge, open education, voluntary consent, and shelter for vulnerable life. These proposals do not establish supernatural claims or mathematical immortality.
+
+**Automation and deployment status:** See [UGTM CI / Render / optional Pages audit](docs/AUTOMATION.md). Pushes, pull requests and a daily 08:17 Taiwan-time scheduled check are configured. GitHub Pages needs one-time activation; a configured Render auto-deploy trigger is not yet proof that commit webhooks work.
