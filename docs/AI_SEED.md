@@ -39,6 +39,12 @@ The seed **automatically proposes** four candidate research questions from appro
 
 **Safety boundary:** All generated candidate questions have `automatically_executable: false`. Proposing questions never modifies the approved registry, allocates indefinite resources, communicates with remote devices, requests credentials, deploys changes, or establishes physical quantum phenomena. Adding an experiment still requires a reviewed commit.
 
+### GitHub-native ACE-inspired cognitive memory
+
+The [GitHub Native Cognitive System](GITHUB_NATIVE_COGNITION.md) extends the seed with bounded **Generator → Reflector → Curator** cycles. The Curator persists deduplicated research-question history and evidence digests in a dedicated, bot-maintained public [GitHub Issue #1](https://github.com/letsgo0226/Universal_God_Turing_Machine/issues/1), instead of relying only on expiring Actions artifacts. It runs at **09:53 Asia/Taipei** under a restricted `issues: write` GitHub Actions job.
+
+This is an **ACE-inspired rule-based research memory**, not an installation of the official ACE3 service, an LLM, self-modifying software, autonomous journal submission or consciousness. GitHub Pages is prepared for publication of the vetted memory snapshot but requires the repository owner to enable GitHub Actions as the Pages source; the existing Render site remains active until a reviewed migration.
+
 ### UGTM AI Seed Plan — academic research protocol program
 
 The seed now maintains an extensible, university-wide starting registry covering **39 disciplines in 12 research groups** ([registry](../research/seed/academic_fields.json)). This is representative coverage, not every possible university subdiscipline. New disciplines and research protocols require reviewed updates.
