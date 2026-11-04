@@ -35,6 +35,7 @@ jobs:
           sh lfp_atgc_tm_2kb.sh > /tmp/atgc.json
           python3 -c 'import json; r=json.load(open("/tmp/atgc.json")); assert r["prototype"]["code"]==341 and r["candidates"]==387'
           python3 tools/verify_trace.py --self-test
+          node tools/ai_seed.js --self-test
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
@@ -104,6 +105,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Generate bounded seed status for optional Pages mirror
+        run: node tools/ai_seed.js --write
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
