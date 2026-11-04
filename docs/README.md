@@ -32,3 +32,7 @@ The GitHub Actions workflow tests the unchanged original core blob hashes, execu
 If the deployment job fails because Pages has not been enabled: open **Settings → Pages → Build and deployment → Source → GitHub Actions** and rerun the workflow. The expected URL after a successful Pages deployment is under the repository's GitHub Pages site; do not treat the URL as live until the workflow succeeds.
 
 This prototype does not claim a halting oracle, a general proof of Kleene's recursion theorem, a purely functional lambda-calculus interpreter, or a novel universality theorem.
+
+### Reproducible cross-language verification
+
+Run `python3 tools/test_differential.py` from the repository root with Python 3 and Node.js. It replays 120 deterministic programs in the browser JavaScript and the independent Python verifier, compares the complete finite trace objects, tests 960 deliberately altered certificates, and checks 40 G257 roundtrips. See [full methodology](VERIFICATION.md) and [machine-readable local results](verification-results.json). `STEP_LIMIT` is not a proof of nontermination.
