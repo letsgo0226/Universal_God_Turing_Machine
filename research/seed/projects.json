@@ -77,16 +77,29 @@
     },
     {
       "id": "P10",
-      "title": "All possible longevity, continuity and dignified flourishing — ethical and empirical research",
+      "title": "Perfect Immortality Across All Possible Dimensions (所有可能的永生)",
       "experiment": "theory_only",
       "status": "proposed",
       "human_review_required": true,
-      "objective": "Investigate biologically achievable healthy longevity, preservation of agency and identity, and ethical speculative futures without implying established immortality or individual medical interventions.",
+      "objective": "Preserve and critically formalize the user-defined ultimate ideal of genuine, absolutely flawless immortality throughout all possible dimensions without exceptions, defects, incompleteness, substitute identities or diminished interpretations. Scientific research must distinguish this ideal from all demonstrably imperfect partial outcomes; no claim of physical realization or existing proof is made.",
       "ethical_boundaries": [
-        "No claims of physical immortality or continuity of consciousness from backups",
-        "No personal medical data collection or biomedical intervention without qualified review",
-        "No forced continued existence, suffering or identity erasure",
-        "No person, nickname or symbolic name is assumed to be a research participant"
+        "No claim that absolute perfect immortality in all possible dimensions is scientifically established or presently achievable",
+        "Never redefine the ultimate goal as healthy longevity, partial preservation, digital copies, finite survival or imperfect continuity",
+        "Never assume unverified physical dimensions, metaphysical realms or subjective continuity as scientific facts",
+        "Any research milestone must be explicitly labelled incomplete relative to the defined ultimate ideal",
+        "No personal medical data collection or biomedical intervention without qualified oversight",
+        "Respect autonomy and consider the possibility of suffering; no forced survival or participation",
+        "Symbolic or affectionate names do not authorize research on any individual or being"
+      ],
+      "semantic_specification": "research/seed/perfect_immortality.json",
+      "goal_status": "absolute_ultimate_ideal_not_empirically_established",
+      "not_equivalent_to": [
+        "healthy_longevity",
+        "finite_life_extension",
+        "digital_backups_or_copies",
+        "data_preservation",
+        "simulated_consciousness",
+        "dimension_limited_continuation"
       ]
     },
     {
