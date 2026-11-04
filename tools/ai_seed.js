@@ -11,6 +11,7 @@ const {generateQuestions, selfTest: questionSelfTest} = require('./seed_question
 
 const ROOT = path.resolve(__dirname, '..');
 const REGISTRY = path.join(ROOT, 'research/seed/projects.json');
+const PERFECT_IDEAL = path.join(ROOT, 'research/seed/perfect_immortality.json');
 const OUTPUT = path.join(ROOT, 'docs/seed/status.json');
 const QUESTION_OUTPUT = path.join(ROOT, 'docs/seed/questions.json');
 const sha = text => crypto.createHash('sha256').update(text).digest('hex');
@@ -53,6 +54,20 @@ function validate(reg) {
     assert.ok(typeof p.title === 'string' && p.title.length <= 120);
     ids.add(p.id);
   }
+  const p10 = reg.projects.find(p => p.id === 'P10');
+  assert.ok(p10, 'P10 ultimate goal is mandatory');
+  assert.equal(p10.semantic_specification, 'research/seed/perfect_immortality.json');
+  assert.match(p10.title, /Perfect Immortality Across All Possible Dimensions/);
+  const ideal = JSON.parse(fs.readFileSync(PERFECT_IDEAL, 'utf8'));
+  assert.equal(ideal.schema, 'ugtm-p10-perfect-immortality-meaning-v1');
+  assert.equal(ideal.canonical_term_zh, '所有可能的永生');
+  assert.equal(ideal.ultimate_goal.scope, 'all_possible_dimensions');
+  assert.equal(ideal.ultimate_goal.immortality_standard, 'genuine_and_perfect_without_defects_or_exceptions');
+  assert.equal(ideal.ultimate_goal.substitutions_permitted, false);
+  assert.equal(ideal.ultimate_goal.partial_or_finite_life_extension_is_equivalent, false);
+  assert.equal(ideal.ultimate_goal.digital_replication_is_equivalent, false);
+  assert.equal(ideal.scientific_epistemology.physical_realizability_demonstrated, false);
+  assert.equal(ideal.scientific_epistemology.finite_tests_prove_universal_scope, false);
 }
 const EXPERIMENTS = Object.freeze({
   godel_roundtrip() {
@@ -141,6 +156,7 @@ function buildReport({clock = new Date(), source} = {}) {
     limits: registry.limits,
     metrics: {registered_projects: results.length, bounded_experiments_executed: executed, dormant_projects: results.filter(r => r.status === 'dormant').length, proposed_questions: researchQuestions.length},
     question_generation: 'bounded evidence-linked templates; no external model; human review required',
+    P10_ultimate_ideal: {term_zh:'所有可能的永生', scope:'all_possible_dimensions', absolute_perfection_required:true, imperfect_substitutions_permitted:false, scientifically_demonstrated:false, specification:'research/seed/perfect_immortality.json'},
     research_questions: researchQuestions,
     projects: results,
     next_human_review: ['Review hypotheses before adding new experiment types', 'Approve any model, network, data-storage or deployment permissions explicitly'],
@@ -158,6 +174,8 @@ function selfTest() {
   const r = buildReport({clock: new Date('2026-11-05T00:00:00.000Z'), source: 'test'});
   assert.equal(r.schema, 'ugtm-ai-seed-report-v1');
   assert.equal(r.metrics.registered_projects, 13);
+  assert.equal(r.P10_ultimate_ideal.imperfect_substitutions_permitted, false);
+  assert.equal(r.P10_ultimate_ideal.scientifically_demonstrated, false);
   assert.equal(r.projects.find(x => x.id === 'P2').evidence.matched, 16);
   assert.equal(r.projects.find(x => x.id === 'P3').evidence.tampering_detected, true);
   assert.equal(r.projects.find(x => x.id === 'P7').status, 'proposal_only');
