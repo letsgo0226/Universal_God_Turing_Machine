@@ -108,21 +108,28 @@ def json_fetch(url, method="GET", token=None, payload=None):
 
 
 def license_name(article):
-    accepted = None
-    for license_node in article.findall(".//{*}permissions/{*}license") + article.findall(".//permissions/license"):
-        # JATS may be namespaced or unnamespaced.
-        href = next((v for k, v in license_node.attrib.items() if k.endswith("}href") or k == "href"), None)
-        if not href:
+    # Some JATS files put a CC URL on <license>; others place an <ext-link>
+    # inside the license statement. Never use links outside <license>.
+    for lic in article.iter():
+        if lic.tag.split("}")[-1] != "license":
             continue
-        parsed = urllib.parse.urlsplit(href.strip())
-        if parsed.scheme not in ("https", "http") or parsed.hostname != "creativecommons.org":
-            continue
-        name = LICENSES.get(parsed.path.rstrip("/") + "/")
-        if name:
-            accepted = (name, "https://creativecommons.org" + parsed.path.rstrip("/") + "/")
-            break
-    return accepted
-
+        urls = []
+        for node in lic.iter():
+            for key, value in node.attrib.items():
+                if key.endswith("}href") or key == "href":
+                    urls.append(value.strip())
+        text = " ".join(lic.itertext())
+        urls.extend(re.findall(
+            r"https?://creativecommons\.org/(?:licenses/by/(?:3|4)\.0|publicdomain/zero/1\.0)/?",
+            text, re.I))
+        for href in urls:
+            parsed = urllib.parse.urlsplit(href)
+            if parsed.scheme not in ("https", "http") or parsed.hostname != "creativecommons.org":
+                continue
+            name = LICENSES.get(parsed.path.rstrip("/") + "/")
+            if name:
+                return name, "https://creativecommons.org" + parsed.path.rstrip("/") + "/"
+    return None
 
 def node_text(node):
     if node is None:
@@ -135,7 +142,7 @@ def inspect_article(xml_bytes, pmcid, search_metadata):
         raise ValueError("XML too large")
     upper = xml_bytes[:5000].upper()
     if b"<!DOCTYPE" in upper or b"<!ENTITY" in upper:
-        raise ValueError("Reject XML declarations with external/internal entities or opaque CDATA")
+        raise ValueError("Reject XML DTD or entity declarations")
     root = ET.fromstring(xml_bytes)
     if root.tag.split("}")[-1] != "article":
         raise ValueError("Expected JATS article")
@@ -373,6 +380,10 @@ def self_test():
     assert "Methods" in data["structure"]["section_headings"]
     assert sum(len(x["short_verbatim_anchor"].split()) for x in data["evidence_anchors"]) <= 14
     assert raises(lambda: inspect_article(sample.replace(b"/by/4.0/", b"/by-nc-nd/4.0/"), pmcid, {}))
+    nested = sample.replace(
+        b'<license xlink:href="https://creativecommons.org/licenses/by/4.0/">',
+        b'<license><ext-link xlink:href="https://creativecommons.org/licenses/by/4.0/"/>')
+    assert inspect_article(nested, pmcid, {})["license"] == "CC BY 4.0"
     assert raises(lambda: inspect_article(sample.replace(b"1234567", b"9999999"), pmcid, {}))
     assert inspect_article(sample.replace(b"Methods</title>", b"Methods</title><![CDATA[additional note]]>"), pmcid, {})["license"] == "CC BY 4.0"
     assert raises(lambda: allowed_request("https://example.com/steal", "GET"))
