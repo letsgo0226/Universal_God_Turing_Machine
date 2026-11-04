@@ -1,0 +1,48 @@
+name: UGTM Verifiable Computation Lab
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'tools/**'
+      - '.github/workflows/ugtm-lab-pages.yml'
+      - 'Universal_God_Turing_Machine.sh'
+      - 'lfp_atgc_tm_2kb.sh'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: ugtm-pages
+  cancel-in-progress: true
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Verify unchanged UGTM and ATGC reference cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+          sh Universal_God_Turing_Machine.sh > /tmp/ugtm.json
+          python3 -c 'import json; r=json.load(open("/tmp/ugtm.json")); assert r["closed_sample"]=="S" and r["input_sample"]=="A"'
+          sh lfp_atgc_tm_2kb.sh > /tmp/atgc.json
+          python3 -c 'import json; r=json.load(open("/tmp/atgc.json")); assert r["prototype"]["code"]==341 and r["candidates"]==387'
+          python3 tools/verify_trace.py --self-test
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: verify-and-build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
