@@ -114,6 +114,28 @@
         "Avoid political manipulation or unauthorized outreach",
         "Disaggregate uncertainty, stakeholder impacts and possible unintended harms"
       ]
+    },
+    {
+      "id": "P13",
+      "title": "Cosmic horizons: galactic encounters, heat death and the fate of time",
+      "experiment": "theory_only",
+      "status": "proposed",
+      "human_review_required": true,
+      "objective": "Study observationally constrained galactic futures, stellar habitability limits, conditional long-term cosmological scenarios and the meaning of temporal boundaries, without asserting that time ends or that physical immortality is technologically achievable.",
+      "subtopics": [
+        "Milky Way–Andromeda encounter probability and gravitational-model uncertainty",
+        "Solar and stellar evolution, habitable worlds and long-term civilization survival",
+        "Conditional heat death and finite accessible thermodynamic resources",
+        "Alternative Big Crunch/Big Rip scenarios and what a terminal time boundary would mean",
+        "Ethics, physical feasibility and information continuity across cosmic timescales"
+      ],
+      "ethical_boundaries": [
+        "No established technology prevents a galactic merger, heat death or a final cosmic time boundary",
+        "Thermodynamic heat death does not by itself mean time ceases",
+        "Do not mistake simulated futures for observed events",
+        "Do not present speculative cosmological models as demonstrated facts",
+        "No autonomous high-risk physical experiment or civilization-scale engineering"
+      ]
     }
   ]
 }
