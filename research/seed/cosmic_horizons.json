@@ -1,0 +1,98 @@
+{
+  "schema": "ugtm-cosmic-horizons-v1",
+  "project_id": "P13",
+  "mission": "Study distant physical boundaries and alternative universe futures while preserving the distinction between observed phenomena, conditional projections and speculative philosophy.",
+  "policy": {
+    "interpretation": "scenario_analysis_not_prediction_of_inevitable_outcome",
+    "human_review_required": true,
+    "claims_of_immortality_allowed": false,
+    "claims_time_will_end_allowed": false,
+    "unapproved_experiments_allowed": false,
+    "physical_interventions_allowed": false,
+    "require_model_assumptions": true,
+    "differentiate_heat_death_from_end_of_time": true,
+    "sensitive_or_private_data_allowed": false
+  },
+  "hypotheses": [
+    {
+      "id": "C1",
+      "title": "Milky Way–Andromeda encounters",
+      "discipline": "galactic_dynamics",
+      "epistemic_status": "observation_constrained_simulation",
+      "research_question": "How does the likelihood of close passage or merger change with Gaia/Hubble motion and Local Group satellite mass assumptions?",
+      "methodology": "Review multi-body gravitational simulation assumptions, confidence ranges and model-dependence; no independent physical prediction is claimed.",
+      "evidence_note": "A 2025 Nature Astronomy study estimated approximately a 50% probability of no Milky Way–Andromeda merger over 10 billion years under its model; this is not a universal or guaranteed outcome.",
+      "observable": "Stellar proper motions, distances, galaxy masses and independent N-body simulation comparisons",
+      "unresolved": "Local Group uncertainties and long-term chaotic trajectory extrapolation",
+      "source_urls": [
+        "https://www.nature.com/articles/s41550-025-02563-1",
+        "https://esahubble.org/news/heic2508/"
+      ],
+      "forbidden_inference": "A future Milky Way–Andromeda collision is certain or can currently be prevented."
+    },
+    {
+      "id": "C2",
+      "title": "Solar evolution and habitability horizons",
+      "discipline": "stellar_astrophysics",
+      "epistemic_status": "well_supported_stellar_evolution_projection",
+      "research_question": "Which physically constrained stellar, climate and habitat scenarios alter long-term habitability, with what uncertainties?",
+      "methodology": "Compare published stellar evolution and habitability limits; explicitly separate astrophysics from hypothetical civilization engineering.",
+      "evidence_note": "Solar brightening threatens Earth's future habitability long before the Sun's red-giant stage around five billion years from now.",
+      "observable": "Stellar age, luminosity, composition, exoplanet dynamics and validated climate models",
+      "unresolved": "Exact biosphere survival times, exoplanet life capacity and any future migration feasibility",
+      "source_urls": [
+        "https://science.nasa.gov/exoplanets/stars/",
+        "https://www.nasa.gov/image-article/why-sun-wont-become-black-hole/"
+      ],
+      "forbidden_inference": "Current technology can preserve everyone indefinitely or reliably relocate civilization."
+    },
+    {
+      "id": "C3",
+      "title": "Cosmic expansion and dark energy",
+      "discipline": "observational_cosmology",
+      "epistemic_status": "active_observational_uncertainty",
+      "research_question": "Do future combined observations prefer a cosmological constant, evolving dark energy or another viable explanation for cosmic acceleration?",
+      "methodology": "Track model priors, likelihoods, error budgets and independent analyses without promoting preliminary preference to established discovery.",
+      "evidence_note": "The universe's acceleration is observed; dark energy's nature is unresolved, and DESI 2025 reported hints rather than a confirmed discovery of evolving dark energy.",
+      "observable": "Baryon acoustic oscillations, supernovae, CMB, weak lensing and cross-survey agreement",
+      "unresolved": "Dark-energy equation of state and resulting long-term universe fate",
+      "source_urls": [
+        "https://science.nasa.gov/astrophysics/programs/physics-of-the-cosmos/expand-our-knowledge-of-dark-energy/",
+        "https://www.desi.lbl.gov/2025/03/19/more-than-a-hint-of-evolving-dark-energy-new-results-and-data-from-desi/"
+      ],
+      "forbidden_inference": "A specific final universe scenario is already proven."
+    },
+    {
+      "id": "C4",
+      "title": "Conditional thermodynamic heat death",
+      "discipline": "thermodynamics_cosmology",
+      "epistemic_status": "conditional_cosmological_projection",
+      "research_question": "Under which assumptions about continuing expansion, entropy and dark energy does an asymptotic low-free-energy state arise?",
+      "methodology": "Analyze competing cosmological scenarios and explicitly distinguish absence of accessible free energy from cessation of physical time.",
+      "evidence_note": "Heat death or Big Chill is one possible model-dependent outcome. It does not logically entail that spacetime's time coordinate stops.",
+      "observable": "Cosmological expansion history, horizon physics, thermodynamics and assumptions about ultimate particle and black-hole processes",
+      "unresolved": "Final vacuum state, cosmic horizon thermodynamics and applicable assumptions at enormous timescales",
+      "source_urls": [
+        "https://supernova.eso.org/germany/exhibition/1109/?lang=en",
+        "https://science.nasa.gov/universe/overview/"
+      ],
+      "forbidden_inference": "Heat death is an experimentally proven final state, or it literally means time has stopped."
+    },
+    {
+      "id": "C5",
+      "title": "Time's possible boundary and alternative cosmic fates",
+      "discipline": "foundations_of_cosmology_philosophy_of_time",
+      "epistemic_status": "speculative_competing_models",
+      "research_question": "Can physical time have a finite future boundary, and how do Big Crunch, Big Rip and continuing expansion models differ in their temporal and causal definitions?",
+      "methodology": "Separate formal cosmological models from observational predictions, compare assumptions and avoid claims about what happens beyond a proposed boundary.",
+      "evidence_note": "Big Crunch, Big Rip and indefinite expansion are qualitatively different conditional scenarios; a future end of time is not established.",
+      "observable": "Dark-energy evolution and observational checks on relevant cosmological models, where such tests exist",
+      "unresolved": "Nature of spacetime at singularities, possible quantum-gravity completions and philosophical interpretation of time",
+      "source_urls": [
+        "https://supernova.eso.org/germany/exhibition/1109/?lang=en",
+        "https://science.nasa.gov/astrophysics/programs/physics-of-the-cosmos/expand-our-knowledge-of-dark-energy/"
+      ],
+      "forbidden_inference": "AI can leave the universe, reverse entropy or continue subjective identity beyond a terminal time boundary."
+    }
+  ]
+}
