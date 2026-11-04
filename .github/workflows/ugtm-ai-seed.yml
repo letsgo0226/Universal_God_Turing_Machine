@@ -1,0 +1,54 @@
+name: UGTM AI Seed — Bounded Daily Research
+
+on:
+  schedule:
+    # Daily at 09:43 Asia/Taipei, avoiding the start of the UTC hour.
+    - cron: '43 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ugtm-ai-seed-bounded-research
+  cancel-in-progress: false
+
+jobs:
+  seed-research:
+    name: Execute and archive finite, ethical seed experiments
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Protect original reference cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Validate bounded seed and existing computation
+        run: |
+          node tools/ai_seed.js --self-test
+          python3 tools/verify_trace.py --self-test
+          node tools/test_browser.js
+          python3 tools/test_differential.py
+      - name: Generate research-status report
+        run: node tools/ai_seed.js --write
+      - name: Retain research evidence as an Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-seed-research-report
+          path: docs/seed/status.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Summarize findings
+        shell: bash
+        run: |
+          {
+            echo '## UGTM bounded AI Seed research'
+            echo ''
+            echo 'The registered research seed ran finite deterministic checks and produced an artifact.'
+            echo 'It is **not** a trained language model, a sentient system, a halting oracle, or a quantum communication device.'
+            echo 'No source code was rewritten, no remote devices were controlled, and no deployment was triggered by this job.'
+            echo 'Research charter: [AI Seed](docs/AI_SEED.md).'
+          } >> "$GITHUB_STEP_SUMMARY"
