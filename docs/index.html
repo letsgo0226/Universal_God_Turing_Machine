@@ -8,6 +8,7 @@
 <section class="card"><h2>02 / 重播驗證</h2><p>可貼上剛才下載的 JSON，或直接帶入。跨語言獨立驗證請使用<a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/tools/verify_trace.py">Python 驗證器</a>。</p><label for="doc">證據 JSON</label><textarea id="doc" placeholder="貼上 ugtm-trace-v1 格式的 JSON"></textarea><div><button id="fill">帶入最新證據</button><button class="primary" id="verify">重播驗證</button></div><p id="checked">尚未驗證。</p></section>
 <section class="card"><h2>03 / ATGC：G257 與有限選擇器</h2><p>根據<a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/lfp_atgc_tm_2kb.sh">現有 ATGC 原型</a>展示可逆編碼與經驗 Shannon 熵。編解碼恆等式並非語義自指定理。</p><label for="payload">UTF-8 字串（最多 128 bytes）</label><input id="payload" value="S"><div><button class="primary" id="encode">G257 編碼 / 解碼</button><button id="select">有限搜尋 N=100000</button></div><pre id="godel">—</pre></section>
 <p>研究限制：步數上限不構成不會停機的證明；JSON 紀錄不具數位簽章；不宣稱超可計算能力。原始核心檔案維持不變。<br><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine">檢視 GitHub 專案</a></p>
+<section class="card"><h2>04 / 重現性與測試報告</h2><p>已新增 Python / JavaScript 有限執行交叉測試、竄改偵測及 G257 編解碼測試。報告中的數字是有限、本機重現結果，不代表所有程式的正確性或停機判定。</p><p><a href="https://github.com/letsgo0226/Universal_God_Turing_Machine/blob/main/docs/VERIFICATION.md">閱讀驗證方法與研究限制</a> · <a href="verification-results.json">檢視機器可讀的測試結果</a></p></section>
 </main><script>
 "use strict";
 const $=s=>document.getElementById(s),enc=new TextEncoder(),dec=new TextDecoder();
