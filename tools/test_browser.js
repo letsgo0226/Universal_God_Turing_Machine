@@ -53,6 +53,12 @@ scholar.selfTest();
 scholar.writeManuscripts();
 console.log('UGTM_ACADEMIC_MANUSCRIPTS=docs/seed/manuscripts/manifest.json');
 
+// Preserve the exact P10 perfect-immortality definition while preparing P13
+// cosmological scenario snapshots. These are proposals, not new physics.
+const cosmic = require('./seed_cosmic.js');
+cosmic.selfTest();
+cosmic.write();
+
 /*
  * Render executes this exact smoke test as its static-site build command.
  * After all assertions pass, write provenance for the published static
