@@ -28,6 +28,17 @@ The seed gives the UGTM research programme an extensible list of project tracks,
 | P7 — Quantum information | Theory-only hypothesis registry; **no** physical quantum experiments or evidence of no-channel communication |
 | P8 — Public benefit | Check for accessible ethics, roadmap and verification documents |
 
+### Autonomous research-question proposals (bounded)
+
+The seed **automatically proposes** four candidate research questions from approved P1–P8 findings at each run. The question engine uses grounded, rule-based, cross-track prompts and deterministic daily rotation. It does **not** call an LLM, invent new physical evidence, or prove an unknown theorem. It is autonomous **proposal generation**, not autonomous approval or experiment design beyond approved templates.
+
+- [Question generator](../tools/seed_questions.js) — reviewable, finite templates anchored to current experiment results; human-reviewed question definitions.
+- [Candidate queue](seed/questions.json) — public **build-time** snapshot with stable question IDs, source evidence, possible method, explicit limitations, and `status: proposed_for_human_review`.
+- [Seed status](seed/status.json) — includes a `research_questions` field and a proposal count.
+- The daily scheduled workflow archives both files as expiring GitHub Actions artifacts. The public site's copy updates only when the code is deployed; daily artifact creation does not itself publish or silently push to `main`.
+
+**Safety boundary:** All generated candidate questions have `automatically_executable: false`. Proposing questions never modifies the approved registry, allocates indefinite resources, communicates with remote devices, requests credentials, deploys changes, or establishes physical quantum phenomena. Adding an experiment still requires a reviewed commit.
+
 ### Running locally
 
 ```sh
@@ -36,7 +47,7 @@ node tools/ai_seed.js --write
 node tools/test_browser.js
 ```
 
-Outputs `docs/seed/status.json`. Scheduled workflows upload that file as an Actions artifact, **without pushing generated code or recursively invoking new workflows**.
+Outputs `docs/seed/status.json` and `docs/seed/questions.json`. Scheduled workflows upload both files as Actions artifacts, **without pushing generated code or recursively invoking new workflows**.
 
 ### Lifecycle and security rules
 
