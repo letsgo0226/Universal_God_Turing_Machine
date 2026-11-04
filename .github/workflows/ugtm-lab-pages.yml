@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Every day at 08:17 Taiwan time (UTC+08); verification only.
+    - cron: '17 0 * * *'
 
 permissions:
   contents: read
@@ -49,7 +52,7 @@ jobs:
 
   pages-status:
     name: Detect optional GitHub Pages (does not block verification)
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: verify
     runs-on: ubuntu-latest
     permissions:
@@ -78,13 +81,13 @@ jobs:
               echo "::notice::Pages build source is not GitHub Actions; optional Pages publish skipped."
             fi
           else
-            echo "::error::GitHub Pages status query returned HTTP ${status}"
-            exit 1
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::GitHub Pages query returned HTTP ${status}; optional publication skipped."
           fi
 
   deploy-pages:
     name: Publish optional GitHub Pages
-    if: github.event_name != 'pull_request' && needs.pages-status.outputs.enabled == 'true'
+    if: needs['pages-status'].outputs.enabled == 'true'
     needs: [verify, pages-status]
     runs-on: ubuntu-latest
     permissions:
