@@ -1,6 +1,12 @@
 name: UGTM AI Seed — Bounded Daily Research
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/seed/**'
+      - 'tools/ai_seed.js'
+      - '.github/workflows/ugtm-ai-seed.yml'
   schedule:
     # Daily at 09:43 Asia/Taipei, avoiding the start of the UTC hour.
     - cron: '43 1 * * *'
