@@ -7,10 +7,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const {generateQuestions, selfTest: questionSelfTest} = require('./seed_questions.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const REGISTRY = path.join(ROOT, 'research/seed/projects.json');
 const OUTPUT = path.join(ROOT, 'docs/seed/status.json');
+const QUESTION_OUTPUT = path.join(ROOT, 'docs/seed/questions.json');
 const sha = text => crypto.createHash('sha256').update(text).digest('hex');
 
 function encode257(bytes) {
@@ -128,6 +130,7 @@ function buildReport({clock = new Date(), source} = {}) {
     results.push({id: p.id, title: p.title, status: 'bounded_check_passed', ...output});
     executed++;
   }
+  const researchQuestions = generateQuestions({projects: results, clock, maxQuestions: 4});
   const commit = source || process.env.RENDER_GIT_COMMIT || process.env.GITHUB_SHA || 'local';
   return {
     schema: 'ugtm-ai-seed-report-v1',
@@ -136,7 +139,9 @@ function buildReport({clock = new Date(), source} = {}) {
     mode: 'bounded_deterministic_research_agent_scaffold',
     model: 'none; an LLM is not configured',
     limits: registry.limits,
-    metrics: {registered_projects: results.length, bounded_experiments_executed: executed, dormant_projects: results.filter(r => r.status === 'dormant').length},
+    metrics: {registered_projects: results.length, bounded_experiments_executed: executed, dormant_projects: results.filter(r => r.status === 'dormant').length, proposed_questions: researchQuestions.length},
+    question_generation: 'bounded evidence-linked templates; no external model; human review required',
+    research_questions: researchQuestions,
     projects: results,
     next_human_review: ['Review hypotheses before adding new experiment types', 'Approve any model, network, data-storage or deployment permissions explicitly'],
     limitations: ['No consciousness or subjective continuity demonstrated', 'No physical quantum entanglement or no-channel communication', 'Finite tests do not prove arbitrary program correctness', 'No self-directed source modification or remote actuation']
@@ -146,6 +151,7 @@ function writeReport() {
   const report = buildReport();
   fs.mkdirSync(path.dirname(OUTPUT), {recursive: true});
   fs.writeFileSync(OUTPUT, JSON.stringify(report, null, 2)+'\n', 'utf8');
+  fs.writeFileSync(QUESTION_OUTPUT, JSON.stringify({schema:'ugtm-seed-questions-v1', source_commit:report.source_commit, generated_at_utc:report.generated_at_utc, generation_method:report.question_generation, questions:report.research_questions}, null, 2)+'\n', 'utf8');
   return report;
 }
 function selfTest() {
@@ -155,17 +161,20 @@ function selfTest() {
   assert.equal(r.projects.find(x => x.id === 'P2').evidence.matched, 16);
   assert.equal(r.projects.find(x => x.id === 'P3').evidence.tampering_detected, true);
   assert.equal(r.projects.find(x => x.id === 'P7').status, 'proposal_only');
+  assert.equal(r.metrics.proposed_questions, 4);
+  assert.ok(r.research_questions.every(q => q.status === 'proposed_for_human_review' && q.automatically_executable === false));
+  questionSelfTest();
   const invalid = loadRegistry();
   invalid.projects.push({...invalid.projects[0]});
   assert.throws(() => validate(invalid), /duplicate project id/);
-  console.log('PASS: bounded AI Seed, 8 projects, checkpoint, deterministic synchronization, policy and tamper tests');
+  console.log('PASS: bounded AI Seed, 8 projects, 4 research questions, checkpoint, deterministic synchronization, policy and tamper tests');
 }
 if (require.main === module) {
   const arg = process.argv[2] || '--self-test';
   if (arg === '--self-test') selfTest();
   else if (arg === '--write') {
     const r = writeReport();
-    console.log('UGTM_SEED_REPORT='+path.relative(ROOT, OUTPUT)+' projects='+r.metrics.registered_projects);
+    console.log('UGTM_SEED_REPORT='+path.relative(ROOT, OUTPUT)+' projects='+r.metrics.registered_projects+' proposals='+r.metrics.proposed_questions);
   } else throw new Error('Supported options: --self-test, --write');
 }
 module.exports = {buildReport, writeReport, selfTest, validate};
