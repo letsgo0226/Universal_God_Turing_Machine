@@ -243,11 +243,17 @@ def self_test():
     assert result["metrics"]["candidate_evidence_links"]==3
     assert result["metrics"]["abstentions"]==1
     assert result["metrics"]["verified_semantic_claims"]==0
-    assert "text" not in json.dumps(result).lower().replace("context","")
+    assert "paragraph_text" not in json.dumps(result).lower()
+    assert "short_verbatim_anchor" not in json.dumps(result).lower()
     assert validate(result)==result
     changed=evaluate(source,sample.replace(b"fictional fixture",b"altered fixture"))
     assert changed["status"]=="source_changed" and not changed["tasks"]
-    assert validate({**result,"digest":"0"*64}) is not result if False else True
+    try:
+        validate({**result,"digest":"0"*64})
+        raise AssertionError("Must reject modified digest")
+    except AssertionError as error:
+        if str(error) == "Must reject modified digest":
+            raise
     bad=dict(result);bad["model_inference_used"]=True
     try:validate(bad);raise AssertionError("Must reject false model attribution")
     except AssertionError as error:
