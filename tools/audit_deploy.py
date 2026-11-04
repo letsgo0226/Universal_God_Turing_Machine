@@ -30,7 +30,7 @@ def audit(expected, url=PUBLIC_MANIFEST, timeout=15):
     except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
         return {"result": "UNVERIFIABLE", "reason": str(exc), "expected_commit": expected, "manifest_url": url}
     actual = doc.get("source_commit_sha") if isinstance(doc, dict) else None
-    if doc.get("schema") != "ugtm-site-build-v1" or not isinstance(actual, str) or not COMMIT_PATTERN.fullmatch(actual):
+    if not isinstance(doc, dict) or doc.get("schema") != "ugtm-site-build-v1" or not isinstance(actual, str) or not COMMIT_PATTERN.fullmatch(actual):
         return {"result": "UNVERIFIABLE", "reason": "missing or invalid Render build provenance fields", "expected_commit": expected, "manifest_url": url}
     return {
         "result": "MATCH" if actual == expected else "STALE",
