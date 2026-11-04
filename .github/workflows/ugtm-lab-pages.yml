@@ -22,7 +22,6 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
       - name: Verify unchanged UGTM and ATGC reference cores
         shell: bash
         run: |
@@ -34,6 +33,9 @@ jobs:
           sh lfp_atgc_tm_2kb.sh > /tmp/atgc.json
           python3 -c 'import json; r=json.load(open("/tmp/atgc.json")); assert r["prototype"]["code"]==341 and r["candidates"]==387'
           python3 tools/verify_trace.py --self-test
+          node tools/test_browser.js
+          python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
