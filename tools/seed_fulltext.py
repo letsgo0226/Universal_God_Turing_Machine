@@ -96,7 +96,7 @@ def fetch(url, method="GET", token=None, payload=None):
             raise ValueError("Outgoing payload too large")
     opener = urllib.request.build_opener(NoRedirect)
     req = urllib.request.Request(url, data=body, method=method, headers=headers)
-    with opener.open(req, timeout=12) as resp:
+    with opener.open(req, timeout=18) as resp:
         raw = resp.read(MAX_RESPONSE + 1)
         if len(raw) > MAX_RESPONSE:
             raise ValueError("Input exceeds approved byte budget")
@@ -203,7 +203,7 @@ def check(record):
     assert record["schema"] == "ugtm-seed-fulltext-reading-v1"
     assert record["repository"] == REPO
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", record["week_start_utc"])
-    assert record["status"] in ("structured_extraction_only", "no_approved_fulltext_found")
+    assert record["status"] in ("structured_extraction_only", "no_approved_fulltext_found", "upstream_unavailable")
     assert record["fulltext_semantic_understanding"] is False
     assert record["human_review_required"] is True
     assert len(record["articles"]) <= 1
@@ -217,14 +217,14 @@ def check(record):
     return record
 
 
-def create_record(moment, topic, candidates, articles, problems, source="local"):
+def create_record(moment, topic, candidates, articles, problems, source="local", status_override=None):
     obj = {
         "schema": "ugtm-seed-fulltext-reading-v1",
         "repository": REPO,
         "week_start_utc": week_start(moment),
         "generated_at_utc": moment.isoformat().replace("+00:00", "Z"),
         "source_commit": source,
-        "status": "structured_extraction_only" if articles else "no_approved_fulltext_found",
+        "status": status_override or ("structured_extraction_only" if articles else "no_approved_fulltext_found"),
         "scope": "Europe PMC eligible open-access subset; initially biomedical/life-science literature, not all 39 university fields",
         "search_topic": topic,
         "search_candidates": candidates[:5],
@@ -248,7 +248,13 @@ def harvest(moment=None, transport=fetch):
     query = 'OPEN_ACCESS:Y AND IN_EPMC:Y AND LICENSE:"CC BY" AND ' + topic.replace(" ", " AND ")
     qs = urllib.parse.urlencode({"query": query, "format": "json", "pageSize": "5", "resultType": "lite"})
     search_url = f"https://{EUROPE_HOST}{BASE}search?{qs}"
-    search_data = json.loads(transport(search_url))
+    try:
+        search_data = json.loads(transport(search_url))
+    except (OSError, TimeoutError, ValueError, urllib.error.URLError) as exc:
+        return create_record(moment, topic, [], [],
+                             [{"stage": "Europe PMC search", "reason": clean(str(exc), 120)}],
+                             source=os.getenv("GITHUB_SHA", "local"),
+                             status_override="upstream_unavailable")
     works = search_data.get("resultList", {}).get("result", [])
     if not isinstance(works, list) or len(works) > 5:
         raise ValueError("Unexpected Europe PMC search response")
@@ -268,7 +274,7 @@ def harvest(moment=None, transport=fetch):
             url = f"https://{EUROPE_HOST}{BASE}{pmcid}/fullTextXML"
             article = inspect_article(transport(url), pmcid, work)
             articles.append(article)
-        except (ValueError, ET.ParseError, PermissionError, urllib.error.HTTPError) as exc:
+        except (ValueError, ET.ParseError, PermissionError, OSError, TimeoutError, urllib.error.HTTPError, urllib.error.URLError) as exc:
             problems.append({"pmcid": pmcid, "reason": clean(str(exc), 90)})
     return create_record(moment, topic, candidates, articles, problems,
                          source=os.getenv("GITHUB_SHA", "local"))
@@ -389,6 +395,10 @@ def self_test():
         assert report == harvest(moment, transport=mocked)
         assert len(report["articles"]) == 1
         assert report["status"] == "structured_extraction_only"
+        unavailable = harvest(moment, transport=lambda url: (_ for _ in ()).throw(TimeoutError("upstream timed out")))
+        assert unavailable["status"] == "upstream_unavailable"
+        assert len(unavailable["articles"]) == 0
+        assert check(unavailable) == unavailable
         assert check(report) == report
         assert from_comment({"user": {"login": "github-actions[bot]"},
                              "body": MARKER + json.dumps(report)}) == report
