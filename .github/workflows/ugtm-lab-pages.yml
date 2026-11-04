@@ -42,6 +42,7 @@ jobs:
           node tools/seed_cognition.js --self-test
           node tools/seed_github_ledger.js --self-test
           node tools/seed_literature.js --self-test
+          python3 tools/seed_fulltext.py --self-test
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
@@ -124,6 +125,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node tools/seed_literature.js --read
+      - name: Read last licensed full-text evidence snapshot for GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/seed_fulltext.py --read
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
