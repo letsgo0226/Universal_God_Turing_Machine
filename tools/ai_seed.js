@@ -157,17 +157,18 @@ function writeReport() {
 function selfTest() {
   const r = buildReport({clock: new Date('2026-11-05T00:00:00.000Z'), source: 'test'});
   assert.equal(r.schema, 'ugtm-ai-seed-report-v1');
-  assert.equal(r.metrics.registered_projects, 8);
+  assert.equal(r.metrics.registered_projects, 9);
   assert.equal(r.projects.find(x => x.id === 'P2').evidence.matched, 16);
   assert.equal(r.projects.find(x => x.id === 'P3').evidence.tampering_detected, true);
   assert.equal(r.projects.find(x => x.id === 'P7').status, 'proposal_only');
+  assert.equal(r.projects.find(x => x.id === 'P9').status, 'proposal_only');
   assert.equal(r.metrics.proposed_questions, 4);
   assert.ok(r.research_questions.every(q => q.status === 'proposed_for_human_review' && q.automatically_executable === false));
   questionSelfTest();
   const invalid = loadRegistry();
   invalid.projects.push({...invalid.projects[0]});
   assert.throws(() => validate(invalid), /duplicate project id/);
-  console.log('PASS: bounded AI Seed, 8 projects, 4 research questions, checkpoint, deterministic synchronization, policy and tamper tests');
+  console.log('PASS: bounded AI Seed, 9 projects, 4 research questions, checkpoint, deterministic synchronization, policy and tamper tests');
 }
 if (require.main === module) {
   const arg = process.argv[2] || '--self-test';
