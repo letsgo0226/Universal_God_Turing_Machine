@@ -1,0 +1,72 @@
+name: UGTM AI Seed — Monthly Academic Research Protocols
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/seed_scholar.js'
+      - 'research/seed/academic_fields.json'
+      - '.github/workflows/ugtm-ai-seed-scholarly.yml'
+  schedule:
+    # UTC first day of month 02:18 = Asia/Taipei 10:18.
+    - cron: '18 2 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ugtm-seed-monthly-scholarly
+  cancel-in-progress: false
+
+jobs:
+  scholarly-drafts:
+    name: Create bounded, source-traceable academic protocol drafts
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve original research core identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Verify field registry and scholarly integrity checks
+        run: node tools/seed_scholar.js --self-test
+      - name: Produce academic manuscript protocol drafts
+        run: node tools/seed_scholar.js --write
+      - name: Confirm no invented accepted or peer-reviewed status
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('docs/seed/manuscripts')
+          x=json.loads((p/'manifest.json').read_text())
+          assert x['registered_fields']>=30
+          assert len(x['drafts'])==3
+          for d in x['drafts']:
+              assert not d['peer_reviewed'] and not d['submission_authorized']
+              t=(p/d['filename']).read_text()
+              assert 'BLOCKED: HUMAN REVIEW REQUIRED' in t
+              assert '## 9. AI use, human authorship and conflicts' in t
+              assert 'No new research results are asserted' in t
+          print('PASS: scholarly review gates, provenance and 3 proposed manuscripts')
+          PY
+      - name: Archive protocol manuscripts and manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-ai-seed-scholarly-protocols
+          path: docs/seed/manuscripts/
+          if-no-files-found: error
+          retention-days: 90
+      - name: State academic limitations
+        shell: bash
+        run: |
+          {
+            echo '## UGTM AI Seed monthly research drafts'
+            echo 'Three structured manuscripts generated for human scholarly review.'
+            echo 'These are NOT peer-reviewed papers, completed scientific results or verified bibliographies.'
+            echo 'No new projects were executed and no journal submission was attempted.'
+            echo 'This workflow does not push generated files or bypass human approval.'
+          } >> "$GITHUB_STEP_SUMMARY"
