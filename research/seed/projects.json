@@ -65,6 +65,15 @@
       "title": "Public-benefit education and ethics",
       "experiment": "documentation_integrity",
       "status": "active_bounded"
+    },
+    {
+      "id": "P9",
+      "title": "Global peace, nonviolent mediation, and civilian protection",
+      "experiment": "theory_only",
+      "status": "proposed",
+      "human_review_required": true,
+      "public_ledger_issue": 3,
+      "objective": "Develop impartial, evidence-bounded options for de-escalation, civilian protection and inclusive voluntary peace processes, without claiming operational diplomatic authority or real-world impact."
     }
   ]
 }
