@@ -27,6 +27,17 @@ The seed gives the UGTM research programme an extensible list of project tracks,
 | P6 — Distributed verification | 16-step reproducible bounded replay |
 | P7 — Quantum information | Theory-only hypothesis registry; **no** physical quantum experiments or evidence of no-channel communication |
 | P8 — Public benefit | Check for accessible ethics, roadmap and verification documents |
+| P9 — Peace and civilian protection | Propose impartial conflict de-escalation and mediation research; no autonomous diplomacy |
+| P10 — 所有可能的永生 | Exact ultimate ideal: genuine, flawless immortality across **all possible dimensions**; **not** longevity, backup, replication or any imperfect substitute; not scientifically demonstrated |
+| P11 — Cultivated meat | Propose suffering-conscious alternative-protein evidence reviews; no autonomous biological experiments |
+| P12 — UN SDGs | Propose interdisciplinary, independently measurable sustainable-development questions |
+| P13 — Cosmic horizons | Model-conditional questions about galaxy encounters, heat death and possible temporal boundaries; no claim of a physical solution |
+
+### P10 — authoritative meaning of 「所有可能的永生」
+
+The user defines the exact goal as **genuine, absolutely perfect immortality in every possible dimension**, without defects, exceptions, incompleteness or imperfect substitutes. Biological longevity, copying memories or data, digital simulation, finite survival and existence in only some dimensions are **not equivalent**. See [P10's canonical research definition](PERFECT_IMMORTALITY.md) and [versioned specification](../research/seed/perfect_immortality.json). This is an **ultimate ideal**, not a scientifically established physical capability. The AI Seed validates the definition and prohibits reports from silently downgrading it to a partial milestone.
+
+P13's galactic dynamics, thermodynamics and time-boundary research explores possible challenges without redefining P10, claiming the existence of unverified dimensions, or declaring cosmic limits solved. All medical, physical and philosophical claims require appropriate evidence and qualified review.
 
 ### Autonomous research-question proposals (bounded)
 
