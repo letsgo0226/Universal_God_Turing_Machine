@@ -1,0 +1,61 @@
+name: UGTM AI Seed — Evidence-Grounded Reader Evaluation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/seed_reader.py'
+      - '.github/workflows/ugtm-seed-reader.yml'
+  schedule:
+    # Tuesdays 11:09 Asia/Taipei, after licensed full-text inspection.
+    - cron: '9 3 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ugtm-seed-evidence-reader
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    name: Evaluate bounded article evidence localization (not model comprehension)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard unchanged UGTM and ATGC cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Verify source attribution, evidence gates and abstention tests
+        run: |
+          python3 -m py_compile tools/seed_fulltext.py tools/seed_reader.py
+          python3 tools/seed_fulltext.py --self-test
+          python3 tools/seed_reader.py --self-test
+      - name: Evaluate last approved article and archive result in Issue 2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/seed_reader.py --evaluate
+      - name: Preserve public machine-readable evaluation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-seed-reading-evaluation
+          path: docs/seed/reader.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Explain interpretation limits
+        shell: bash
+        run: |
+          {
+            echo '## UGTM evidence-based scholarly reader baseline'
+            echo 'Four evaluation tasks: methods, results, limitations and one deliberately unsupported question.'
+            echo 'Evidence consists of section labels and SHA-256 paragraph digests, NOT a claim that a machine understood the text.'
+            echo 'No LLM backend was used, no external model was trained or deployed, and journal peer review was not performed.'
+            echo 'The source must match its archived Europe PMC JATS XML digest and CC licence.'
+            echo 'All conclusions need independent human verification.'
+          } >> "$GITHUB_STEP_SUMMARY"
