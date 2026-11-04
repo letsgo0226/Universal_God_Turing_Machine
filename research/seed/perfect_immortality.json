@@ -1,0 +1,51 @@
+{
+  "schema": "ugtm-p10-perfect-immortality-meaning-v1",
+  "project_id": "P10",
+  "canonical_term_zh": "所有可能的永生",
+  "canonical_term_en": "Perfect Immortality Across All Possible Dimensions",
+  "authoritative_interpretation_zh": "在所有可能維度之中真正的、沒有任何缺陷、例外或不完美的永生；不接受以任何不完美形式替代其原意。",
+  "ultimate_goal": {
+    "scope": "all_possible_dimensions",
+    "meaning_of_dimension": "Not fixed to currently observed physical spatial dimensions; possible physical, cosmological, logical or metaphysical dimensions require explicit definition and consistency analysis before formal quantification.",
+    "immortality_standard": "genuine_and_perfect_without_defects_or_exceptions",
+    "substitutions_permitted": false,
+    "partial_or_finite_life_extension_is_equivalent": false,
+    "digital_replication_is_equivalent": false,
+    "archival_memory_is_equivalent": false,
+    "simulated_identity_is_equivalent": false,
+    "survival_in_only_some_dimensions_is_equivalent": false,
+    "observer_or_subject_continuity_must_not_be_assumed_from_identical_data": true,
+    "noncoercion_and_possible_welfare_harms_must_be_considered": true
+  },
+  "scientific_epistemology": {
+    "status": "user_defined_ultimate_ideal_not_empirically_established",
+    "existence_of_all_proposed_dimensions_demonstrated": false,
+    "physical_realizability_demonstrated": false,
+    "genuine_subjective_continuity_demonstrated": false,
+    "current_means_to_overcome_cosmological_limits_demonstrated": false,
+    "finite_tests_prove_universal_scope": false,
+    "scientific_intermediate_research_allowed": true,
+    "intermediate_achievements_must_never_be_rebranded_as_the_ultimate_goal": true,
+    "require_human_review": true
+  },
+  "proposed_formalization": {
+    "notation": "For every dimension d in a clearly defined consistent domain D_possible, P(d) must hold without defect or exception.",
+    "caveat": "This is a target specification, not a theorem of existence or a demonstrated physically realizable universal property. P and D_possible must be defined, with consistency and model-checking limits disclosed.",
+    "challenge": "A finite computational procedure cannot in general establish an unconstrained universal claim over every conceivable model or dimension."
+  },
+  "cosmic_relationship": {
+    "project_id": "P13",
+    "role": "Investigate physical limits and cosmological assumptions without weakening or replacing the stated perfect-immortality ideal.",
+    "examples": [
+      "galactic encounter and stellar habitability",
+      "cosmic heat death and thermodynamic limits",
+      "possible temporal boundaries and causal structure"
+    ]
+  },
+  "privacy_and_research_ethics": {
+    "symbolic_names_not_research_subjects": true,
+    "no_unconsented_medical_or_biological_interventions": true,
+    "no_claims_of_existing_personal_immortality": true,
+    "safeguard_possible_sentient_welfare": true
+  }
+}
