@@ -1,0 +1,61 @@
+name: UGTM AI Seed — Licensed Full-Text Evidence Inspection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/seed_fulltext.py'
+      - '.github/workflows/ugtm-seed-fulltext.yml'
+  schedule:
+    # Tuesday 10:47 Asia/Taipei, after the 10:25 Crossref metadata cycle.
+    - cron: '47 2 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ugtm-seed-fulltext-literature
+  cancel-in-progress: false
+
+jobs:
+  oa-fulltext:
+    name: UGTM AI Seed licensed full-text structural evidence (no LLM)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Protect original UGTM and ATGC cores
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object Universal_God_Turing_Machine.sh)" = '23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d'
+          test "$(git hash-object lfp_atgc_tm_2kb.sh)" = '70b8423d3b5f254ce3011336b868edc20674b8bd'
+      - name: Verify allowed hosts, JATS licensing, extraction and integrity
+        run: |
+          python3 -m py_compile tools/seed_fulltext.py
+          python3 tools/seed_fulltext.py --self-test
+      - name: Inspect open-access full text and archive tiny evidence anchors
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/seed_fulltext.py --harvest
+      - name: Preserve non-full-text evidence record
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugtm-seed-licensed-fulltext-evidence
+          path: docs/seed/fulltext.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Report bounded results and academic caveats
+        shell: bash
+        run: |
+          {
+            echo '## UGTM AI Seed: licensed full-text structured reading'
+            echo 'Europe PMC official API was queried for a small Open Access subset.'
+            echo 'Only explicit CC BY 3.0/4.0 or CC0 1.0 XML was eligible for parsing.'
+            echo 'One article maximum; three XML attempts maximum; no article body retained or republished.'
+            echo 'Tiny, traceable evidence anchors and metadata were archived in GitHub Issue #2.'
+            echo 'No semantic AI understanding, independent research conclusion, original discovery, or LLM training is claimed.'
+            echo 'Human review is required for interpreting findings and citing any source.'
+          } >> "$GITHUB_STEP_SUMMARY"
