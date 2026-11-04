@@ -1,6 +1,6 @@
 # UGTM continuous verification and deployment
 
-**Status:** repository-based automation configured; complete end-to-end GitHub-to-Render push-triggered delivery has **not** yet been independently verified.
+**Status:** end-to-end GitHub Actions → Render automatic deployment **verified on 2026-11-05 (Asia/Taipei)** for commit `d49bfb929994cb5ad8f06c4428a9b06fb111f4a1`.
 
 ## Automated tests and triggers
 
@@ -32,9 +32,9 @@ The regression suite tests **finite** computation, deliberately altered JSON rep
 - Build command: `node tools/test_browser.js`
 - Publish path: `docs`
 - Configured automatic deployment: **yes**, triggered on commit.
-- Last independently checked published SHA at the time this document was authored: `ffdbb8f215ad8e18cf353291aedb9cfe1bc3acd8` (a manual/API-triggered successful deployment).
+- Verified automatic acceptance deployment: `d49bfb929994cb5ad8f06c4428a9b06fb111f4a1` — Render deployment `dep-dblndbmq1p3s73dutef0`, `trigger=new_commit`, `status=live`, following passing GitHub Actions run `41885575124`.
 
-**Important:** Render's `autoDeploy=yes` configuration does not by itself prove that GitHub commit webhooks are functioning. Compare the deployed SHA with the GitHub `main` HEAD. If the Render dashboard does not show a new deploy after a push, review the Render-to-GitHub repository connection and the configured auto-deploy trigger. Do not report the new commit as live until Render confirms the matching revision.
+**Acceptance evidence:** GitHub Actions run [`41885575124`](https://github.com/letsgo0226/Universal_God_Turing_Machine/actions/runs/41885575124) completed successfully on `d49bfb92`; Render then created deployment `dep-dblndbmq1p3s73dutef0` with `trigger=new_commit`, and confirmed the matching commit `live`. Thus this particular GitHub-to-Render automatic deployment passed an end-to-end check. Each future deployment still requires its own verification.
 
 ### 2. GitHub Pages (optional second public mirror)
 
@@ -75,6 +75,6 @@ python3 tools/audit_deploy.py --expected-sha "$(git rev-parse HEAD)"
 
 It reports `MATCH`, `STALE`, or `UNVERIFIABLE`. It does not automatically rewrite or deploy anything. Daily GitHub Actions scheduled tests run the same audit with `--warn-only`; an unavailable public site will not cause a mathematical regression check to be misrepresented as a failure.
 
-**Why commit-triggered Render deployments may not start:** Render's official documentation says that services configured from a **public Git repository URL** rather than an authenticated, connected Git provider require manual deployment, even if the service's `autoDeploy` setting says `yes`. Our current service was created using a public Git URL, and no auto-triggered deployment has yet been observed. The operator should review [the service's Render Settings](https://dashboard.render.com/static/srv-dbllfdff3r2c73dvfns0) and attach an authenticated GitHub provider connection to `letsgo0226/Universal_God_Turing_Machine` on branch `main`; the currently available connector does not expose changing that source integration. Do not consider GitHub push-to-Render delivery verified until a new push yields a matching Render deploy record with a commit trigger.
+**Connecting the Git provider:** Render deployments originating from unauthenticated public Git URLs can fail to receive automatic push events, even if the service reports `autoDeploy=yes`. The user has since configured the service in Render; the observed `new_commit` deployment after a successful GitHub run establishes that the integration is working for this tested commit. For future regressions, inspect [Render Settings and Deploys](https://dashboard.render.com/static/srv-dbllfdff3r2c73dvfns0) and compare CI and live SHA before claiming a release is current.
 
 A separate daily **ChatGPT deployment-health watch** is enabled on the user's account (09:15 Asia/Taipei), which compares verified CI and live revisions, and may attempt a safe latest-commit redeploy when the exact matching CI is green. This watchdog is a fallback; it is not a substitute for a correctly connected Render webhook or formal CI-gated delivery. The personal ChatGPT automation is not part of the public GitHub Actions workflow and depends on its own task and connector availability.
