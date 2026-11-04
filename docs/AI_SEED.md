@@ -45,6 +45,14 @@ The [GitHub Native Cognitive System](GITHUB_NATIVE_COGNITION.md) extends the see
 
 This is an **ACE-inspired rule-based research memory**, not an installation of the official ACE3 service, an LLM, self-modifying software, autonomous journal submission or consciousness. **GitHub Pages has been enabled and verified**; the existing Render site remains active until a separately reviewed migration.
 
+### Restricted public scholarly discovery (GitHub-native)
+
+The **existing UGTM AI Seed** now has a [metadata discovery module](../tools/seed_literature.js) and a [weekly read-only scholarly retrieval job](../.github/workflows/ugtm-seed-literature.yml). The job searches a *rotating set of three approved university disciplines*, requests at most two bibliographic records per discipline from the public [Crossref REST API](https://www.crossref.org/documentation/retrieve-metadata/rest-api/), and archives only normalized DOI/title/author/year/journal metadata in [public GitHub Issue #2](https://github.com/letsgo0226/Universal_God_Turing_Machine/issues/2). A limited GitHub token is permitted to write to that issue; the metadata code restricts network destinations to Crossref and this exact GitHub Issue. It uses no paid AI model, separate crawler, unrestricted web browsing, or credential-bearing scholarly service.
+
+The publication workflow reads the **latest archived metadata snapshot** into [seed/literature.json](seed/literature.json). If there is no prior archive, the JSON explicitly reports a pending state; scheduled GitHub Pages updates may lag the separate literature workflow.
+
+**Intellectual integrity:** A Crossref DOI only identifies bibliographic metadata supplied by depositors. The system **has not read paper full texts**, does not prove relevance or scientific findings, and cannot cite candidates as verified scholarship. Any future licensed full-text retrieval, reading comprehension with LLMs, evidence tracing, model training or self-directed improvement requires a separate explicit authorization, provenance controls, rights and privacy review, evaluation and limited costs. See [academic standards](ACADEMIC_STANDARDS.md).
+
 ### UGTM AI Seed Plan — academic research protocol program
 
 The seed now maintains an extensible, university-wide starting registry covering **39 disciplines in 12 research groups** ([registry](../research/seed/academic_fields.json)). This is representative coverage, not every possible university subdiscipline. New disciplines and research protocols require reviewed updates.
