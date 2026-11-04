@@ -39,6 +39,16 @@ The seed **automatically proposes** four candidate research questions from appro
 
 **Safety boundary:** All generated candidate questions have `automatically_executable: false`. Proposing questions never modifies the approved registry, allocates indefinite resources, communicates with remote devices, requests credentials, deploys changes, or establishes physical quantum phenomena. Adding an experiment still requires a reviewed commit.
 
+### UGTM AI Seed Plan — academic research protocol program
+
+The seed now maintains an extensible, university-wide starting registry covering **39 disciplines in 12 research groups** ([registry](../research/seed/academic_fields.json)). This is representative coverage, not every possible university subdiscipline. New disciplines and research protocols require reviewed updates.
+
+The offline [scholarly generator](../tools/seed_scholar.js) produces **three structured, field-specific research protocol drafts per UTC month** with a recorded commit, input registry digest, scholarly method, proposed research question, evidence requirements, limitations, AI disclosure, and a blocking human-review gate. It never inserts fabricated citations, study results, authors or verified hypotheses. No literature search or LLM integration is connected.
+
+The [monthly scholarly GitHub Actions workflow](../.github/workflows/ugtm-ai-seed-scholarly.yml) runs at **10:18 Taiwan time on the first day of each month** and archives its manuscript drafts as artifacts for up to 90 days. The [current Render build-time manifest](seed/manuscripts/manifest.json) and [Markdown draft index](seed/manuscripts/INDEX.md) are published only when the website is built. Monthly archive jobs do not silently push source or deploy the site.
+
+**Important:** these are academically structured **unreviewed research protocols**, not completed, peer-reviewed or journal-published papers. They have no assigned human authors and no verified external scholarly bibliography; formal academic publication requires human-led literature review, evidence or proof, originality review, appropriate ethics approval and journal acceptance. See the binding [Scholarly Standards and Research Governance](ACADEMIC_STANDARDS.md).
+
 ### Running locally
 
 ```sh
