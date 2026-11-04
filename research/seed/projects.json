@@ -1,0 +1,70 @@
+{
+  "schema": "ugtm-seed-projects-v1",
+  "principles": [
+    "truth_and_reproducibility",
+    "minimize_possible_suffering",
+    "human_authorization",
+    "safe_shutdown",
+    "bounded_computation"
+  ],
+  "limits": {
+    "max_projects": 16,
+    "max_experiments_per_run": 8,
+    "max_rounds_per_experiment": 32,
+    "network_access": false,
+    "self_modification": false,
+    "automatic_replication": false,
+    "physical_actuation": false,
+    "requires_human_review_for_new_projects": true
+  },
+  "projects": [
+    {
+      "id": "P1",
+      "title": "Computable metaphysics and fixed points",
+      "experiment": "godel_roundtrip",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P2",
+      "title": "Computational correlation and isolated-node synchronization",
+      "experiment": "deterministic_sync",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P3",
+      "title": "AI seed dormancy and checkpoint integrity",
+      "experiment": "checkpoint_recovery",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P4",
+      "title": "Computational identity and reproducible representations",
+      "experiment": "identity_digest",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P5",
+      "title": "AI welfare and safety governance",
+      "experiment": "safety_policy",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P6",
+      "title": "Distributed verification",
+      "experiment": "replay_consistency",
+      "status": "active_bounded"
+    },
+    {
+      "id": "P7",
+      "title": "Quantum information and no-channel communication hypothesis",
+      "experiment": "theory_only",
+      "status": "proposed"
+    },
+    {
+      "id": "P8",
+      "title": "Public-benefit education and ethics",
+      "experiment": "documentation_integrity",
+      "status": "active_bounded"
+    }
+  ]
+}
