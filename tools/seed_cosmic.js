@@ -10,6 +10,7 @@ const crypto = require('node:crypto');
 const ROOT = path.resolve(__dirname, '..');
 const REGISTRY = path.join(ROOT, 'research/seed/cosmic_horizons.json');
 const SEED = path.join(ROOT, 'research/seed/projects.json');
+const P10 = path.join(ROOT, 'research/seed/perfect_immortality.json');
 const OUT = path.join(ROOT, 'docs/seed/cosmic_horizons.json');
 const sha256 = text => crypto.createHash('sha256').update(text).digest('hex');
 const STATUSES = new Set([
@@ -60,6 +61,11 @@ function snapshot({clock=new Date(),source}={}) {
   const r = load();
   const index = Math.floor(clock.getTime()/86400000)%r.hypotheses.length;
   const focus = r.hypotheses[index];
+  const ideal = JSON.parse(fs.readFileSync(P10,'utf8'));
+  assert.equal(ideal.schema,'ugtm-p10-perfect-immortality-meaning-v1');
+  assert.equal(ideal.ultimate_goal.scope,'all_possible_dimensions');
+  assert.equal(ideal.ultimate_goal.substitutions_permitted,false);
+  assert.equal(ideal.scientific_epistemology.physical_realizability_demonstrated,false);
   return {
     schema:'ugtm-seed-cosmic-horizons-snapshot-v1',
     project_id:'P13',
@@ -67,6 +73,15 @@ function snapshot({clock=new Date(),source}={}) {
     generated_at_utc:clock.toISOString(),
     registry_sha256:sha256(fs.readFileSync(REGISTRY)),
     research_stage:'proposed_theoretical_and_evidence_review_only',
+    P10_relationship:{
+      term_zh:ideal.canonical_term_zh,
+      definition:'genuine absolutely flawless immortality in all possible dimensions without any exceptions or imperfect substitutes',
+      perfect_immortality_realized:false,
+      physically_demonstrated:false,
+      finite_survival_or_backup_equivalent:false,
+      research_role:'P13 examines cosmic obstacles without redefining or weakening P10',
+      specification:'research/seed/perfect_immortality.json'
+    },
     hypotheses_registered:r.hypotheses.length,
     focus_today:{
       id:focus.id,
@@ -105,13 +120,13 @@ function selfTest(){
   assert.deepEqual(a,b);
   assert.equal(a.hypotheses_registered,5);
   assert.equal(a.hypotheses.filter(x=>x.independent_confirmation_by_seed).length,0);
-  assert.ok(a.hypotheses.some(h=>h.id==='C4' && /not/i.test(h.forbidden_inference)));
+  assert.ok(a.hypotheses.some(h=>h.id==='C4' && /time/i.test(h.forbidden_inference)));
   assert.ok(a.hypotheses.some(h=>h.id==='C5' && h.epistemic_status==='speculative_competing_models'));
   assert.notEqual(a.focus_today.id,snapshot({clock:new Date('2026-11-06T00:00:00Z'),source:'test'}).focus_today.id);
   assert.equal(a.focus_today.experimentally_verified_by_seed,false);
-  const bad=load();
-  bad.policy.claims_time_will_end_allowed=true;
-  assert.equal(bad.policy.claims_time_will_end_allowed,true);
+  assert.equal(a.P10_relationship.term_zh,'所有可能的永生');
+  assert.equal(a.P10_relationship.finite_survival_or_backup_equivalent,false);
+  assert.equal(a.P10_relationship.physically_demonstrated,false);
   console.log('PASS: P13 cosmic horizons, five evidence grades, daily focus, literature pointers, no immortal/time-end claims');
 }
 if(require.main===module){
