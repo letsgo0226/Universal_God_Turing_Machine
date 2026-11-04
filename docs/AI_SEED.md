@@ -35,7 +35,7 @@ The seed **automatically proposes** four candidate research questions from appro
 - [Question generator](../tools/seed_questions.js) — reviewable, finite templates anchored to current experiment results; human-reviewed question definitions.
 - [Candidate queue](seed/questions.json) — public **build-time** snapshot with stable question IDs, source evidence, possible method, explicit limitations, and `status: proposed_for_human_review`.
 - [Seed status](seed/status.json) — includes a `research_questions` field and a proposal count.
-- The daily scheduled workflow archives both files as expiring GitHub Actions artifacts. The public site's copy updates only when the code is deployed; daily artifact creation does not itself publish or silently push to `main`.
+- The daily seed workflow archives both files as expiring GitHub Actions artifacts. **GitHub Pages now also generates a daily static snapshot at 10:13 Taiwan time**, after the 09:53 cognitive-memory schedule. That is a separate, read-only publishing workflow, not a source-code push; Render remains a separately triggered fallback. GitHub scheduling can be late or skipped.
 
 **Safety boundary:** All generated candidate questions have `automatically_executable: false`. Proposing questions never modifies the approved registry, allocates indefinite resources, communicates with remote devices, requests credentials, deploys changes, or establishes physical quantum phenomena. Adding an experiment still requires a reviewed commit.
 
@@ -43,7 +43,7 @@ The seed **automatically proposes** four candidate research questions from appro
 
 The [GitHub Native Cognitive System](GITHUB_NATIVE_COGNITION.md) extends the seed with bounded **Generator → Reflector → Curator** cycles. The Curator persists deduplicated research-question history and evidence digests in a dedicated, bot-maintained public [GitHub Issue #1](https://github.com/letsgo0226/Universal_God_Turing_Machine/issues/1), instead of relying only on expiring Actions artifacts. It runs at **09:53 Asia/Taipei** under a restricted `issues: write` GitHub Actions job.
 
-This is an **ACE-inspired rule-based research memory**, not an installation of the official ACE3 service, an LLM, self-modifying software, autonomous journal submission or consciousness. GitHub Pages is prepared for publication of the vetted memory snapshot but requires the repository owner to enable GitHub Actions as the Pages source; the existing Render site remains active until a reviewed migration.
+This is an **ACE-inspired rule-based research memory**, not an installation of the official ACE3 service, an LLM, self-modifying software, autonomous journal submission or consciousness. **GitHub Pages has been enabled and verified**; the existing Render site remains active until a separately reviewed migration.
 
 ### UGTM AI Seed Plan — academic research protocol program
 
