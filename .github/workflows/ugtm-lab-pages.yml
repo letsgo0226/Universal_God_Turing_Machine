@@ -38,6 +38,10 @@ jobs:
           node tools/test_browser.js
           python3 tools/verify_trace.py /tmp/ugtm-browser-certificate.json
           python3 tools/test_differential.py
+      - name: Audit published Render revision (scheduled runs only)
+        if: github.event_name == 'schedule'
+        run: |
+          python3 tools/audit_deploy.py --expected-sha "$(git rev-parse HEAD)" --warn-only
       - name: Publish verification summary
         if: always()
         shell: bash
