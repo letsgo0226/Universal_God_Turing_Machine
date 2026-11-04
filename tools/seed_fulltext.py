@@ -134,7 +134,7 @@ def inspect_article(xml_bytes, pmcid, search_metadata):
     if len(xml_bytes) > MAX_RESPONSE:
         raise ValueError("XML too large")
     upper = xml_bytes[:5000].upper()
-    if b"<!DOCTYPE" in upper or b"<!ENTITY" in upper or b"<![CDATA[" in upper:
+    if b"<!DOCTYPE" in upper or b"<!ENTITY" in upper:
         raise ValueError("Reject XML declarations with external/internal entities or opaque CDATA")
     root = ET.fromstring(xml_bytes)
     if root.tag.split("}")[-1] != "article":
@@ -245,7 +245,7 @@ def harvest(moment=None, transport=fetch):
     moment = moment or dt.datetime.now(dt.timezone.utc)
     weeks = int((moment.date() - dt.date(2026, 1, 5)).days // 7)
     topic = TOPICS[weeks % len(TOPICS)]
-    query = "OPEN_ACCESS:Y AND IN_EPMC:Y AND " + topic.replace(" ", " AND ")
+    query = 'OPEN_ACCESS:Y AND IN_EPMC:Y AND LICENSE:"CC BY" AND ' + topic.replace(" ", " AND ")
     qs = urllib.parse.urlencode({"query": query, "format": "json", "pageSize": "5", "resultType": "lite"})
     search_url = f"https://{EUROPE_HOST}{BASE}search?{qs}"
     search_data = json.loads(transport(search_url))
@@ -333,7 +333,7 @@ def run(mode):
     if mode != "--harvest":
         raise ValueError("Supported modes: --read, --harvest, --self-test")
     now = dt.datetime.now(dt.timezone.utc)
-    if previous and previous["week_start_utc"] == week_start(now):
+    if previous and previous["week_start_utc"] == week_start(now) and previous["status"] == "structured_extraction_only":
         write(previous)
         print("UGTM_FULLTEXT_ALREADY_ARCHIVED=" + previous["week_start_utc"])
         return
@@ -368,6 +368,7 @@ def self_test():
     assert sum(len(x["short_verbatim_anchor"].split()) for x in data["evidence_anchors"]) <= 14
     assert raises(lambda: inspect_article(sample.replace(b"/by/4.0/", b"/by-nc-nd/4.0/"), pmcid, {}))
     assert raises(lambda: inspect_article(sample.replace(b"1234567", b"9999999"), pmcid, {}))
+    assert inspect_article(sample.replace(b"Methods</title>", b"Methods</title><![CDATA[additional note]]>"), pmcid, {})["license"] == "CC BY 4.0"
     assert raises(lambda: allowed_request("https://example.com/steal", "GET"))
     assert raises(lambda: allowed_request("http://www.ebi.ac.uk/europepmc/webservices/rest/search", "GET"))
     assert raises(lambda: allowed_request(github_url("/comments"), "DELETE"))
