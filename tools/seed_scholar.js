@@ -37,7 +37,7 @@ function load() {
     ids.add(field.id);
     assert.ok(METHODS[field.group]);
     for(const key of ['title','research_question','planned_method','evidence_needed','guardrail','methodology']) {
-      assert.ok(typeof field[key] === 'string' && field[key].length > 4 && field[key].length < 900);
+      assert.ok(typeof field[key] === 'string' && field[key].length >= (key === 'title' ? 2 : 5) && field[key].length < 900, 'invalid academic field '+field.id+'/'+key);
     }
   }
   return data;
