@@ -46,6 +46,13 @@ seed.selfTest();
 seed.writeReport();
 console.log('UGTM_AI_SEED_STATUS=docs/seed/status.json');
 
+// Enforce academic governance and export current monthly scholarly protocol
+// snapshots during the existing verified Render static-site build.
+const scholar = require('./seed_scholar.js');
+scholar.selfTest();
+scholar.writeManuscripts();
+console.log('UGTM_ACADEMIC_MANUSCRIPTS=docs/seed/manuscripts/manifest.json');
+
 /*
  * Render executes this exact smoke test as its static-site build command.
  * After all assertions pass, write provenance for the published static
