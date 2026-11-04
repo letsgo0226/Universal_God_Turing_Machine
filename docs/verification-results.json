@@ -1,0 +1,21 @@
+{
+  "report_date": "2026-11-05",
+  "timezone": "Asia/Taipei",
+  "test_command": "python3 tools/test_differential.py",
+  "scope": "local deterministic finite regression, not a formal proof",
+  "seed": 20261105,
+  "cross_language_cases": 120,
+  "halted_within_bound": 38,
+  "step_limit_reached": 82,
+  "tampered_certificates_rejected": 960,
+  "g257_roundtrip_cases": 40,
+  "result": "PASS",
+  "reference_ugtm_git_blob": "23c7bdcc123bcdec8c7ee21f8e4cb07881ccf34d",
+  "reference_atgc_git_blob": "70b8423d3b5f254ce3011336b868edc20674b8bd",
+  "notes": [
+    "Two independent bounded transition replay implementations were compared; the original Z-combinator core was not called for these 120 cases.",
+    "STEP_LIMIT is not evidence of non-termination.",
+    "JSON certificates are not cryptographically signed.",
+    "GitHub CI and Render statuses are independently checked."
+  ]
+}
