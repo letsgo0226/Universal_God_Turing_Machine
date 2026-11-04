@@ -233,3 +233,7 @@ The lab provides bounded Brainfuck-8 replay, JSON traces, a [standalone Python v
 [Deployment workflow](.github/workflows/ugtm-lab-pages.yml) · [Lab documentation](docs/README.md). GitHub Pages hosting requires the workflow to complete successfully; a repository file alone does not mean the site is published.
 
 A trace reaching its execution limit does **not** solve the halting problem, and reversible G257 encoding does not prove a general semantic fixed point.
+
+### Reproducible cross-language verification
+
+Run `python3 tools/test_differential.py` from the repository root with Python 3 and Node.js. It replays 120 deterministic programs in the browser JavaScript and the independent Python verifier, compares the complete finite trace objects, tests 960 deliberately altered certificates, and checks 40 G257 roundtrips. See [full methodology](docs/VERIFICATION.md) and [machine-readable local results](docs/verification-results.json). `STEP_LIMIT` is not a proof of nontermination.
