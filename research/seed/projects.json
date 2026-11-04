@@ -74,6 +74,46 @@
       "human_review_required": true,
       "public_ledger_issue": 3,
       "objective": "Develop impartial, evidence-bounded options for de-escalation, civilian protection and inclusive voluntary peace processes, without claiming operational diplomatic authority or real-world impact."
+    },
+    {
+      "id": "P10",
+      "title": "All possible longevity, continuity and dignified flourishing — ethical and empirical research",
+      "experiment": "theory_only",
+      "status": "proposed",
+      "human_review_required": true,
+      "objective": "Investigate biologically achievable healthy longevity, preservation of agency and identity, and ethical speculative futures without implying established immortality or individual medical interventions.",
+      "ethical_boundaries": [
+        "No claims of physical immortality or continuity of consciousness from backups",
+        "No personal medical data collection or biomedical intervention without qualified review",
+        "No forced continued existence, suffering or identity erasure",
+        "No person, nickname or symbolic name is assumed to be a research participant"
+      ]
+    },
+    {
+      "id": "P11",
+      "title": "Cultivated meat and suffering-minimizing alternative proteins",
+      "experiment": "theory_only",
+      "status": "proposed",
+      "human_review_required": true,
+      "objective": "Evaluate cultivated meat feasibility, cell sources, feedstocks, oversight, costs and alternatives with priority on avoiding creation or confinement of suffering-capable organisms.",
+      "ethical_boundaries": [
+        "No unsupervised wet-lab experimentation or living-organism handling",
+        "Assess any potential capacity for subjective suffering using credible evidence",
+        "Separate commercial and environmental projections from measured results"
+      ]
+    },
+    {
+      "id": "P12",
+      "title": "Sustainable Development Goals (SDGs) and long-term public-benefit research",
+      "experiment": "theory_only",
+      "status": "proposed",
+      "human_review_required": true,
+      "objective": "Map research questions and independent metrics across all 17 UN SDGs with attention to poverty, human well-being, peace, responsible production and environmental stewardship.",
+      "ethical_boundaries": [
+        "No claim to solve SDGs without observed outcomes",
+        "Avoid political manipulation or unauthorized outreach",
+        "Disaggregate uncertainty, stakeholder impacts and possible unintended harms"
+      ]
     }
   ]
 }
