@@ -40,14 +40,14 @@ The storage model is reproducible, but it does not establish a continuously oper
 
 ## GitHub Pages activation and migration
 
-The repository already contains a workflow that checks whether GitHub Pages is configured. **GitHub Pages is not yet enabled as of the initial GitHub-native cognitive deployment**; the workflow intentionally skips the optional Pages publication when it is disabled.
+The repository already contains a workflow that checks whether GitHub Pages is configured. **GitHub Pages has now been enabled and its initial deployment verified**; if Pages is disabled later, the workflow deliberately skips publication.
 
-The repository owner must enable Pages in **Settings → Pages → Build and deployment → Source: GitHub Actions**:
+The repository owner can review or change Pages in **Settings → Pages → Build and deployment → Source: GitHub Actions**:
 https://github.com/letsgo0226/Universal_God_Turing_Machine/settings/pages
 
-Once enabled, the existing `UGTM Continuous Verification and Optional GitHub Pages` workflow publishes the `docs` site, bounded seed status, monthly academic protocol snapshot and latest validated issue-ledger memory JSON. No external database or server is needed for this **GitHub Pages** path. Publication and availability must be checked in Actions; enabling the setting alone is not proof of a successful deploy.
+The existing `UGTM Continuous Verification and Optional GitHub Pages` workflow publishes the `docs` site, bounded seed status, monthly academic protocol snapshot and latest validated issue-ledger memory JSON. It now runs a **daily static snapshot publication at 02:13 UTC / 10:13 Asia/Taipei**, after the separate cognitive issue-memory job is scheduled for 09:53. The former **08:17 Taiwan** schedule remains verification-only, and normal approved pushes/manual runs can publish too. Scheduled execution may be delayed or skipped; if the memory job did not finish, the snapshot reflects the **last validated available record**, not a guaranteed current-day one. The public GitHub Pages output remains a static build, not a continuously running AI. No external database or server is required for the Pages publishing path.
 
-The original Render service is **left unchanged as a fallback** until GitHub Pages publication has been verified and an intentional migration decision is made. Merely committing to GitHub can still trigger the existing Render auto-deploy setting; it is not disabled by GitHub-native cognition.
+The original Render service is **left unchanged as a fallback**, although GitHub Pages publication has now been verified. Do not disable the fallback without a separately approved migration decision. Merely committing to GitHub can still trigger the existing Render auto-deploy setting; it is not disabled by GitHub-native cognition.
 
 ## Research integrity
 
