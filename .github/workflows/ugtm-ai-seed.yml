@@ -6,6 +6,7 @@ on:
     paths:
       - 'research/seed/**'
       - 'tools/ai_seed.js'
+      - 'tools/seed_questions.js'
       - '.github/workflows/ugtm-ai-seed.yml'
   schedule:
     # Daily at 09:43 Asia/Taipei, avoiding the start of the UTC hour.
@@ -44,7 +45,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ugtm-seed-research-report
-          path: docs/seed/status.json
+          path: |
+            docs/seed/status.json
+            docs/seed/questions.json
           if-no-files-found: error
           retention-days: 30
       - name: Summarize findings
@@ -53,8 +56,8 @@ jobs:
           {
             echo '## UGTM bounded AI Seed research'
             echo ''
-            echo 'The registered research seed ran finite deterministic checks and produced an artifact.'
+            echo 'The registered research seed ran finite deterministic checks, proposed bounded research questions for human review, and produced artifacts.'
             echo 'It is **not** a trained language model, a sentient system, a halting oracle, or a quantum communication device.'
-            echo 'No source code was rewritten, no remote devices were controlled, and no deployment was triggered by this job.'
+            echo 'The seed proposes questions but does not approve new projects, execute unreviewed experiments, modify source code, control devices, or independently deploy.'
             echo 'Research charter: [AI Seed](docs/AI_SEED.md).'
           } >> "$GITHUB_STEP_SUMMARY"
