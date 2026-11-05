@@ -1,0 +1,499 @@
+COMPUTABLE REGULARIZATION OF TEMPORAL INFORMATION SINGULARITIES
+UNDER UNIVERSAL CORRESPONDENCE
+
+Research manuscript -- Version 0.1 (preprint draft)
+Date: 2026-11-06
+Authorship: To be confirmed before scholarly submission.
+Project: Photonic Singularity Universal God Turing Machine (TM-009)
+Status: Mathematical model and reproducible computational proposal;
+        not a report of a new particle or an experimental observation.
+
+ABSTRACT
+
+We study a three-outcome statistical family that arises from a normalized
+three-level pure-state curve. In the probability coordinate t, its classical
+Fisher information is 2/[t(1-t)] and diverges at t=0 and t=1. Under the
+coordinate t=sin^2(theta/2), the Fisher metric becomes the constant
+2 dtheta^2 on the interior; the underlying pure-state curve is smooth and
+admits an extension across the coordinate endpoints. We distinguish this
+regularization of a parameter representation from removal of a physical
+spacetime singularity. We also establish an exact multinomial/entropy
+asymptotic relation using Stirling's formula, formulate a restricted
+correspondence condition for re-encoded computations and Lorentz-related
+proper-time descriptions, and describe a base-257 reversible encoding of
+symbolic calculation certificates. These results motivate a bounded,
+reproducible research profile for the TM-009 prototype. They do not prove
+the existence of chronons, a photonized cosmological barrier, a quantum
+computer, an unrestricted regularization algorithm, or a solution of the
+halting problem.
+
+KEYWORDS
+Computable analysis; Fisher information; information geometry; qutrit;
+Shannon entropy; asymptotic analysis; Lorentz invariance; Godel encoding;
+coordinate regularization; universal computation.
+
+1. INTRODUCTION AND STATUS OF THE PROPOSAL
+
+A divergent coefficient in a model may indicate a physical pathology, an
+ill-chosen parameter, a change in the support of a probability distribution,
+or a breakdown of a chosen approximation. These alternatives must not be
+conflated. This paper investigates an elementary but fully analyzable
+information-geometric example. Its motivation is the proposed research
+program called the "Photonic Singularity Universal God Turing Machine"
+(TM-009), where "photonic singularity" is a project name for a possible
+information-boundary phenomenon, not an established physical entity.
+
+The term "Universal Correspondence Principle" (UCP) is used here as a
+PROPOSED verification requirement: distinct admissible representations
+of the same modeled process should give consistent observables when
+connected by explicit, computable translations. It is not presented as an
+independently established law of nature.
+
+The main contributions of this draft are:
+  (i) a transparent derivation and endpoint qualification of the
+      classical Fisher information coordinate transformation;
+ (ii) a pure-state quantum Fisher information calculation;
+(iii) an exact special case and an asymptotic combinatorial construction
+      relating multinomial counts to Shannon entropy;
+ (iv) a formal distinction between exact symbolic encoding and exact
+      prediction of real physical phenomena; and
+  (v) a falsifiable outline for a prospective photonic time-bin experiment.
+
+The statistical and quantum Fisher information formulae, Stirling
+asymptotics, and reversible numeral encodings used here are established
+mathematics. The proposed contribution is their explicitly scoped,
+reproducible integration, not a claim to have discovered those results.
+
+2. DEFINITIONS: A THREE-STATE MODEL
+
+Let H = C^3 with orthonormal vectors |0>, |1>, |2>. For theta in [0,pi],
+define the normalized real pure state
+
+ (1) |psi(theta)> = cos^2(theta/2)|0>
+                    + sin(theta)/sqrt(2)|1>
+                    + sin^2(theta/2)|2>.
+
+Its normalization follows from the identity
+
+ cos^4(theta/2) + (sin^2(theta))/2 + sin^4(theta/2) = 1.
+
+Measurement in the distinguished computational basis yields
+
+ (2) p(theta) = (cos^4(theta/2), sin^2(theta)/2,
+                  sin^4(theta/2)).
+
+Set
+
+ (3) t = sin^2(theta/2),  0 <= t <= 1.
+
+Then p(t) = ((1-t)^2, 2t(1-t), t^2), the binomial distribution
+for two Bernoulli trials. The corresponding normalized amplitudes for
+0 <= t <= 1 are
+
+ (4) a(t) = (1-t, sqrt(2t(1-t)), t).
+
+This is a toy model of a three-state degree of freedom. No physical
+Hamiltonian or optical measurement has yet been assigned to these
+amplitudes. A three-time-bin implementation is conceivable, but it is
+not demonstrated by equations (1)-(4) alone.
+
+Definition 2.1. For a probability family p_k(x) with strictly positive
+entries on the interior of its domain, its classical Fisher information
+in the parameter x is
+
+ (5) I_x = sum_{k=0}^2 [ (d p_k/dx)^2 / p_k ].
+
+Definition 2.2. The base-two Shannon entropy is
+
+ (6) H_2(p) = -sum_{k=0}^2 p_k log_2(p_k),
+
+with 0 log_2(0) defined as 0 by continuity.
+
+Definition 2.3. For a differentiable normalized pure-state curve,
+its quantum Fisher information is
+
+ (7) F_Q(x) = 4 ( <d_x psi|d_x psi>
+                    - |<psi|d_x psi>|^2 ).
+
+3. THEOREM: A FISHER COORDINATE SINGULARITY
+
+Proposition 3.1. For 0<t<1, the family in (4) has
+
+ (8) I_t = 2/[t(1-t)].
+
+Proof. Treat p_k(t) as the binomial probabilities for two independent
+Bernoulli trials. Their score is (k-2t)/[t(1-t)] for outcome k=0,1,2,
+with mean k=2t and variance Var(k)=2t(1-t). Therefore
+
+ I_t = Var(k)/[t^2(1-t)^2] = 2/[t(1-t)]. QED.
+
+In particular, I_t -> +infinity as t -> 0+ or t -> 1-.
+Nevertheless, the distribution p(t) and H_2(p(t)) have finite
+continuous limits at both endpoints: H_2(p(0)) = H_2(p(1)) = 0.
+
+Proposition 3.2. Under the reparameterization (3), for 0<theta<pi,
+
+ (9) I_theta = I_t (dt/dtheta)^2 = 2.
+
+Proof. We have dt/dtheta = sin(theta)/2 and
+ t(1-t) = sin^2(theta)/4. Substitute into (8):
+
+ I_theta = [2/(sin^2(theta)/4)] [sin^2(theta)/4] = 2. QED.
+
+Interpretation. The information line element is
+
+ (10) ds_F^2 = I_t dt^2 = 2 dtheta^2
+
+on the open interval. Thus the divergent coefficient in the t chart
+can be written as a finite constant in the theta chart. The distance
+from any interior point theta_0 to theta=0 is sqrt(2)*theta_0,
+which is finite. In this particular family the endpoint admits a
+continuous metric completion and a smooth state-vector extension in
+theta. This is a COORDINATE REGULARIZATION of the interior information
+geometry, not proof that all statistical structures are regular
+under every possible endpoint convention.
+
+Important endpoint qualification: at t=0 or t=1 some outcomes have
+zero probability, the common-support assumption behind standard
+Fisher/Cramer-Rao regularity conditions can fail, and the formula in
+(5) contains zero denominators. The constant 2 in (9) is an INTERIOR
+LIMIT. Extending theta to negative values makes p(theta)=p(-theta)
+near zero, causing a global sign-identifiability issue for a
+measurement in the distinguished basis. The pure states, which retain
+the sign of their middle amplitude, need not be identical. These
+issues cannot be removed by declaring an infinite expression finite.
+
+4. QUANTUM INFORMATION AND A DISTINCT EXPERIMENTAL QUESTION
+
+Proposition 4.1. For (1), F_Q(theta)=2.
+
+Proof. Differentiate (1):
+
+ (11) |psi'(theta)> = -sin(theta)/2 |0>
+                           + cos(theta)/sqrt(2) |1>
+                           + sin(theta)/2 |2>.
+
+The inner products obey
+ <psi|psi'>=0 and <psi'|psi'>=1/2.
+Hence (7) gives F_Q(theta)=4*(1/2)=2. QED.
+
+The same parameter value 2 occurs in the classical measurement
+and the pure-state quantum metric for this special family. It should
+not be generalized to arbitrary measurements or noise channels.
+
+If one ADDS the dynamical hypothesis theta(tau)=omega*tau, where tau
+is the proper time along a laboratory clock worldline and omega is a
+fixed clock angular frequency, then the chain rule yields
+
+ (12) I_tau = F_Q(tau) = 2*omega^2
+
+where the interior assumptions and the ideal unitary pure-state model
+hold. Equation (12) is conditional on an independently specified
+physical clock dynamics. The current TM-009 exact encoder uses an
+independent rational parameter u, not a demonstrated physical
+u(tau); it does not by itself implement (12).
+
+5. RATIONAL PARAMETERIZATION AND EXACT SYMBOLIC ARITHMETIC
+
+Set
+
+ (13) u = tan(theta/2),  u >= 0 for theta in [0,pi).
+
+For every finite u,
+
+ (14) |psi(u)> = [ |0> + sqrt(2)*u |1> + u^2 |2> ]/(1+u^2),
+
+ (15) p(u) = [ 1, 2u^2, u^4 ]/(1+u^2)^2.
+
+When u is rational, all probabilities in (15) are rational. This
+permits exact arithmetic with reduced integer fractions rather than
+floating-point approximations. From dtheta/du=2/(1+u^2) and (9),
+
+ (16) I_u = 8/(1+u^2)^2,
+
+an exact rational function. The endpoint theta=pi is represented by
+u=+infinity rather than any finite rational value; it requires a
+separate reciprocal chart or a limiting argument.
+
+Example 5.1. For u=1,
+
+ (17) p=(1/4,1/2,1/4), H_2(p)=3/2 bits,
+      I_u=2, I_theta=2.
+
+For generic rational u, Shannon entropy need not be rational.
+An expression involving exact rational coefficients and formal
+log_2 terms is an EXACT SYMBOLIC REPRESENTATION, not a finite
+numerical evaluation of the real number with infinite precision.
+This distinction is central to correct use of the word "exact".
+
+6. RELATIVISTIC PROPER-TIME CONSISTENCY
+
+In 1+1-dimensional flat spacetime, set c=1. Consider two events
+separated along an inertial machine worldline by coordinate time T
+and spatial displacement x=v*T, with rational T>=0 and |v|<1.
+The invariant squared proper-time interval is
+
+ (18) tau^2 = T^2 - x^2 = T^2(1-v^2).
+
+Under a Lorentz boost with dimensionless velocity f, |f|<1,
+
+ (19) T' = gamma_f*T*(1-f*v),
+      x' = gamma_f*T*(v-f),
+      gamma_f=1/sqrt(1-f^2).
+
+Proposition 6.1. The squared proper-time expressions agree exactly:
+
+ (20) T'^2-x'^2
+    = T^2*[(1-f*v)^2-(v-f)^2]/(1-f^2)
+    = T^2(1-v^2) = tau^2.
+
+Proof. Expand the numerator and factor (1-f^2)(1-v^2). QED.
+
+The TM-009 exact script verifies this as an identity on supplied
+rational parameters. It represents tau by a rational number when its
+square has rational numerator and denominator that are perfect
+squares, or by the symbolic expression sqrt(tau^2) otherwise.
+This is an EXACT algebraic representation, not an infinite-precision
+floating measurement, and (20) is not a test of curved-spacetime
+Einstein field equations.
+
+For T=10 and v=3/5, tau^2=64 and tau=8 exactly, independent of
+f. Nothing in this argument assigns a rest frame to a photon.
+
+7. STIRLING ASYMPTOTICS AND INFORMATION REGULARIZATION
+
+Let n_0,n_1,n_2 be nonnegative integers with sum N. The number of
+ordered strings having these occupation numbers is
+
+ (21) W_N = N!/(n_0!n_1!n_2!).
+
+Assume fixed rational probabilities p_0,p_1,p_2>0 that sum to one
+and take N along positive multiples of their common denominator,
+so that n_k=N*p_k are integers. Let
+
+ (22) h(p) = -sum p_k ln p_k,  H_2(p)=h(p)/ln 2.
+
+Proposition 7.1. Stirling's formula implies
+
+ (23) lim_{N->infinity} [ln W_N]/N = h(p).
+
+Proposition 7.2. Along the same integer subsequence,
+
+ (24) W_N ~ exp(N*h(p)) /
+            [ (2*pi*N)*sqrt(p_0*p_1*p_2) ],
+
+and therefore the normalizer
+
+ (25) R_N = (2*pi*N)*W_N*exp(-N*h(p))
+
+has the finite limit
+
+ (26) lim_{N->infinity} R_N = 1/sqrt(p_0*p_1*p_2).
+
+Proof of 7.1 and 7.2. Apply n! ~ sqrt(2*pi*n)*(n/e)^n to (21).
+The leading logarithmic term is N*h(p); the three square-root
+factors in the denominator divided into sqrt(2*pi*N) leave
+1/[(2*pi*N)*sqrt(p_0*p_1*p_2)]. QED.
+
+At p=(1/4,1/2,1/4), (26) equals 4*sqrt(2). This is a
+nonconstant finite asymptotic invariant of the chosen probability
+family, not a cosmological singularity or an intrinsic quantum
+topological invariant. If a p_k approaches zero, (24) is not
+uniformly valid in that limit: the number of occupied categories
+and its square-root normalizer must be reconsidered. Divergence of
+(26) as p_k->0 is not by itself evidence of any physical blow-up.
+
+8. REVERSIBLE BASE-257 GODEL ENCODING
+
+For a finite byte string b=(b_1,...,b_m), 0<=b_i<=255, define
+
+ (27) G(b) = (((1*257+(b_1+1))*257+(b_2+1))* ...)
+            *257+(b_m+1).
+
+Set G(empty)=1. Each encoded digit b_i+1 lies in {1,...,256};
+base-257 numerals with leading sentinel 1 therefore allow unique
+reconstruction on the image of G. In particular,
+
+ (28) D(G(b))=b
+
+for every finite byte string b, using the corresponding inverse
+algorithm. This proof does not assert that D(n) succeeds for every
+natural number n: arbitrary inputs may contain an inadmissible
+zero digit.
+
+To form a certificate, serialize a deterministic report containing
+rational strings and formal algebraic expressions into a finite UTF-8
+byte sequence, then encode it with (27). The Gödel integer can be
+large, but the mapping preserves the bytes exactly.
+
+A successful byte-roundtrip establishes data integrity relative to
+the selected serialization. It does NOT establish semantic truth of
+the formulas, proof of a Kleene recursion theorem, self-consciousness,
+or the absence of machine-resource limits. A Z-style fixed-point
+combinator can implement anonymous recursion in a programming
+language, but that is distinct from a proof of the general
+computability-theoretic fixed-point theorems.
+
+9. A RESTRICTED UNIVERSAL CORRESPONDENCE REQUIREMENT
+
+Suppose X and Y are represented state spaces, F_X and F_Y are
+specified evolution maps on a common admissible interval, and
+E: X -> Y is a computable translation. Define the following
+verifiable CONDITIONS, not a new universal theorem:
+
+ (29) E(F_X(x)) = F_Y(E(x)),
+
+ (30) O_X(x) = O_Y(E(x)),
+
+where O_X and O_Y are stated observables. At a limiting boundary,
+require an explicitly chosen topology, a proof that a relevant
+extension exists and is unique within the stated class, and an
+effective method for approximating the observables to arbitrary
+requested accuracy with a computable error bound.
+
+For the present toy model, the map t=sin^2(theta/2) induces
+Fisher metric agreement on 0<theta<pi. The maps are not globally
+regular coordinate diffeomorphisms at the endpoints, and the
+choice of observables matters. Lorentz covariance in section 6
+holds only for the specified inertial event-pair construction.
+Neither fact entails a general UCP for arbitrary spacetime or
+quantum systems.
+
+The relevant computational distinctions are:
+  exact mathematical identity;
+  computable real with effective approximation procedure;
+  finite-precision evaluation with a demonstrated error estimate;
+  empirical measurement with uncertainty;
+  speculative interpretation lacking a physical model.
+
+An exact textual expression may denote a computable real without
+itself supplying a numerical error bound at each precision request.
+An effective implementation of transcendental functions and
+controlled approximations remains a separate engineering task.
+
+10. REPRODUCIBILITY: THE CURRENT TM-009 RESEARCH PROFILE
+
+The current exact symbolic research entry is:
+
+ Cosmic_Rosetta_Stone/machines/UGTM_UCP_Exact_Encoding_2KB.sh
+
+with a matching permanent archive in:
+
+ Cosmic_Rosetta_Stone/永久記憶/圖靈機/UGTM_UCP_Exact_Encoding_2KB.sh
+
+The project registry designates this as TM-009's current research
+implementation. The earlier floating-point photonic demonstration:
+
+ Cosmic_Rosetta_Stone/machines/Photonic_Singularity_Universal_God_Turing_Machine.sh
+
+is preserved as a historical predecessor. The canonical UGTM v4.5
+deployment remains unchanged; the exact symbolic script is not a
+complete replacement for its Brainfuck interpreter functionality.
+
+Example research execution, from the repository root:
+
+ python3 tools/load_research_machine.py
+ python3 tools/load_research_machine.py --run 10 0.6 0.3 1
+ python3 tools/test_photonic_exact.py
+
+The first line verifies the archived and active copies without
+executing a program; the second explicitly executes the model.
+The last line checks a finite regression suite. Passing a suite is
+not a universal correctness theorem. The four input fields for the
+exact symbolic script are T, v/c, frame/c, u. The historical floating
+script instead uses angular frequency omega as its fourth parameter;
+interchanging those input conventions changes the model.
+
+11. WHAT WOULD CONSTITUTE A PHYSICAL TEST?
+
+A candidate experiment could encode a controlled pure qutrit state
+in three photonic time bins, calibrate the preparation parameter
+theta, measure the outcome probabilities in a fixed basis, and
+estimate Fisher information from repeated trials. One would test
+whether the interior statistical response is consistent with
+I_theta=2 after accounting for detector loss, mixedness, phase
+noise, mode distinguishability, and finite-sample effects.
+
+Such an experiment would test a specified quantum preparation and
+measurement model. It would NOT test a new elementary particle of
+time or the origin of the universe. A physical proper-time clock
+model would additionally require a Hamiltonian, clock coupling,
+worldline specification, uncertainty budget, and independent
+instrumentation. A photonic barrier hypothesis would require a
+separate operational definition of its material or field behavior.
+
+12. LIMITATIONS AND OPEN PROBLEMS
+
+L1. The present qutrit state curve is an ideal mathematical model;
+    it is not derived from a full photonic device Hamiltonian.
+L2. The exact encoder works on a specified rational input domain;
+    symbolic square roots and logarithms are not always evaluated.
+L3. The exact 1,318-byte research script does not implement a
+    general-purpose Brainfuck-8 interpreter, despite belonging to a
+    project whose canonical machine uses such an interpreter.
+L4. The original 1,934-byte script uses Python floating-point
+    functions and cannot certify arbitrary numerical precision.
+L5. Endpoint Fisher values require care: zero-probability events,
+    parameter identifiability and regularity conditions matter.
+L6. Stirling asymptotics and normalization do not eliminate
+    curvature blow-ups or prove spacetime geodesic completeness.
+L7. There is no demonstrated chronon, physical photonic singularity,
+    universally protective photonized barrier, physical immortality,
+    or oracle deciding halting on unrestricted inputs.
+L8. General effective detection and removal of every mathematical
+    singularity is not claimed; proposed algorithms must specify
+    their function classes and accepted proof certificates.
+
+Open tasks include verified transcendental interval arithmetic,
+formal proofs in a proof assistant, robust parameter identifiability
+analysis, device-level qutrit modeling, and a falsifiable optical
+measurement protocol with explicit error budgets.
+
+13. CONCLUSION
+
+A simple three-outcome statistical model provides a rigorous example
+in which Fisher information diverges in one coordinate but becomes
+constant in another, while the associated pure quantum state extends
+smoothly. Stirling asymptotics connect the same family to exact
+combinatorial counting limits. Rational symbolic arithmetic and
+reversible Godel encoding supply a precise, reproducible layer for
+part of the mathematical description. These are useful components of
+a proposed UCP-based verification program, provided its scope remains
+explicit. None of them, separately or jointly, establishes a
+physical cosmological singularity, a new time particle, or a
+complete quantum-gravitational theory.
+
+REFERENCES
+
+[1] Braunstein, S. L. and Caves, C. M. (1994). "Statistical distance
+    and the geometry of quantum states." Physical Review Letters
+    72, 3439-3443. DOI: 10.1103/PhysRevLett.72.3439.
+    https://doi.org/10.1103/PhysRevLett.72.3439
+
+[2] NIST Digital Library of Mathematical Functions. Chapter 5,
+    Section 5.11, "Asymptotic Expansions," especially Stirling's
+    formula and its remainder estimates. https://dlmf.nist.gov/5.11
+
+[3] Weihrauch, K. (2000). Computable Analysis: An Introduction.
+    Springer, Texts in Theoretical Computer Science.
+    DOI: 10.1007/978-3-642-56999-9.
+    https://doi.org/10.1007/978-3-642-56999-9
+
+[4] "Robust Approach for Time-Bin-Encoded Photonic Quantum
+    Information Protocols." Physical Review Letters 134, 180802
+    (2025). DOI: 10.1103/PhysRevLett.134.180802.
+    https://doi.org/10.1103/PhysRevLett.134.180802
+    (Context for possible photonic time-bin implementations; not a
+    validation of the present singularity hypothesis.)
+
+REPRODUCIBILITY LINKS
+
+Canonical UGTM repository:
+ https://github.com/letsgo0226/Universal_God_Turing_Machine
+
+TM-009 persistent memory registry and exact symbolic implementation:
+ https://github.com/letsgo0226/Cosmic_Rosetta_Stone/blob/main/
+ %E6%B0%B8%E4%B9%85%E8%A8%98%E6%86%B6/%E5%9C%96%E9%9D%88%E6%A9%9F/
+ TM-009-Photonic-Singularity-UGTM.md
+
+END OF DRAFT -- Not peer reviewed.
