@@ -245,10 +245,16 @@ The UGTM project's proposed [truth–exploration–care charter](docs/WHERE_WE_W
 **Automation and deployment status:** See [UGTM CI / Render / optional Pages audit](docs/AUTOMATION.md). Pushes, pull requests and a daily 08:17 Taiwan-time scheduled check are configured. GitHub Pages needs one-time activation; a configured Render auto-deploy trigger is not yet proof that commit webhooks work.
 
 
-## Current master research configuration: photonic singularity (2026-11-05)
+## Current TM-009 photonic singularity research entry (2026-11-05)
 
-The latest **experimental research entry point** under the UGTM umbrella is [Photonic Singularity Universal God Turing Machine](Photonic_Singularity_Universal_God_Turing_Machine.sh) (1,934-byte Shell/Python one-liner). It combines a built-in Brainfuck/Z-combinator test, G257 roundtrip, inertial-frame proper-time consistency, a three-state information model, Shannon entropy, Fisher-information reparameterization, and a unitary three-cycle.
+The active **research** implementation of **Photonic Singularity Universal God Turing Machine (TM-009)** is now the [1,318-byte exact rational/symbolic one-liner](UGTM_UCP_Exact_Encoding_2KB.sh). It performs exact rational algebra for specified inertial-frame proper-time-squared identities, rational three-state measurement probabilities and Fisher-coordinate relations; it retains symbolic square roots/entropy expressions and G257 roundtrip checks.
 
-Run `bash Photonic_Singularity_Universal_God_Turing_Machine.sh 10 0.6 0.3 0.2` and `python3 tools/test_photonic_singularity.py` for reproducible smoke checks. Read the [master configuration specification](docs/PHOTONIC_SINGULARITY_MASTER.md) for equations, scope, and limitations.
+```bash
+bash UGTM_UCP_Exact_Encoding_2KB.sh 10 0.6 0.3 1
+```
 
-This is a **project integration designation, not a total halting decider or a unified 2 KB implementation of every research module**. The original [UGTM interpreter](Universal_God_Turing_Machine.sh), separate [G257/ATGC selector](lfp_atgc_tm_2kb.sh), and other previously designated canonical baselines remain unchanged. The proposed photonic singularity, chronon, and cosmological barrier are **not experimentally established**.
+The fourth argument is an **exact rational `u` parameter**, not clock angular frequency. The original [1,934-byte floating-point photonic demonstration](Photonic_Singularity_Universal_God_Turing_Machine.sh), which contains a built-in Brainfuck interpreter smoke test and time-frequency-dependent toy clock, is preserved as the **predecessor** and remains runnable with its different fourth argument `w`.
+
+[Mathematical scope and versions](docs/PHOTONIC_SINGULARITY_MASTER.md) · [Permanent TM-009 machine registry and content-verified loader](https://github.com/letsgo0226/Cosmic_Rosetta_Stone/blob/main/永久記憶/圖靈機/TM-009-Photonic-Singularity-UGTM.md)
+
+**This is a research-profile update, not a replacement of the canonical UGTM v4.5 automated master deployment.** The exact one-liner is not a full replacement for the original universal Brainfuck-8 interpreter; it does not establish a chronon, physical photonic singularity, barrier, or halting oracle.
