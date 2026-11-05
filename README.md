@@ -243,3 +243,12 @@ Run `python3 tools/test_differential.py` from the repository root with Python 3 
 The UGTM project's proposed [truth–exploration–care charter](docs/WHERE_WE_WILL_BE_GOING.md) and [public-benefit roadmap](docs/PUBLIC_BENEFIT_ROADMAP.md) distinguish empirical computation from speculative metaphysics. They emphasize independently verifiable knowledge, open education, voluntary consent, and shelter for vulnerable life. These proposals do not establish supernatural claims or mathematical immortality.
 
 **Automation and deployment status:** See [UGTM CI / Render / optional Pages audit](docs/AUTOMATION.md). Pushes, pull requests and a daily 08:17 Taiwan-time scheduled check are configured. GitHub Pages needs one-time activation; a configured Render auto-deploy trigger is not yet proof that commit webhooks work.
+
+
+## Current master research configuration: photonic singularity (2026-11-05)
+
+The latest **experimental research entry point** under the UGTM umbrella is [Photonic Singularity Universal God Turing Machine](Photonic_Singularity_Universal_God_Turing_Machine.sh) (1,934-byte Shell/Python one-liner). It combines a built-in Brainfuck/Z-combinator test, G257 roundtrip, inertial-frame proper-time consistency, a three-state information model, Shannon entropy, Fisher-information reparameterization, and a unitary three-cycle.
+
+Run `bash Photonic_Singularity_Universal_God_Turing_Machine.sh 10 0.6 0.3 0.2` and `python3 tools/test_photonic_singularity.py` for reproducible smoke checks. Read the [master configuration specification](docs/PHOTONIC_SINGULARITY_MASTER.md) for equations, scope, and limitations.
+
+This is a **project integration designation, not a total halting decider or a unified 2 KB implementation of every research module**. The original [UGTM interpreter](Universal_God_Turing_Machine.sh), separate [G257/ATGC selector](lfp_atgc_tm_2kb.sh), and other previously designated canonical baselines remain unchanged. The proposed photonic singularity, chronon, and cosmological barrier are **not experimentally established**.
