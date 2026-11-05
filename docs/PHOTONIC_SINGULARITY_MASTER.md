@@ -1,19 +1,30 @@
 # Photonic Singularity UGTM — Master Research Configuration
 
-**Status:** current experimental research entry point under the Universal God Turing Machine (UGTM) umbrella, effective 2026-11-05. **Not** a replacement for the canonical original interpreter, the G257/ATGC module, or any separately preserved Schumann Machine baseline.
+**Status (2026-11-05 update):** TM-009's active research loading entry is now the **1,318-byte exact rational/symbolic encoding variant**. The original 1,934-byte photonic-singularity demonstration remains preserved as its historical predecessor. The canonical UGTM v4.5 master deployment, original interpreter, G257/ATGC module and Schumann baselines are **not replaced**.
 
 ## Entry points and compatibility
 
 | Role | Repository file | Relationship |
 | --- | --- | --- |
-| Current photonic-singularity research entry point | [`Photonic_Singularity_Universal_God_Turing_Machine.sh`](../Photonic_Singularity_Universal_God_Turing_Machine.sh) | Self-contained, 1,934-byte Shell/Python one-liner |
+| **Current TM-009 exact research entry point** | [`UGTM_UCP_Exact_Encoding_2KB.sh`](../UGTM_UCP_Exact_Encoding_2KB.sh) | 1,318-byte exact rational/symbolic one-liner; default research profile stored in Cosmic_Rosetta_Stone |
+| Historical floating-point photonic demo | [`Photonic_Singularity_Universal_God_Turing_Machine.sh`](../Photonic_Singularity_Universal_God_Turing_Machine.sh) | Preserved 1,934-byte predecessor with built-in Brainfuck sample |
 | Original computational baseline | [`Universal_God_Turing_Machine.sh`](../Universal_God_Turing_Machine.sh) | Retained unchanged |
 | Finite G257/ATGC experiment | [`lfp_atgc_tm_2kb.sh`](../lfp_atgc_tm_2kb.sh) | Retained unchanged; **not** embedded into the photonic one-liner |
 | Browser verification tools | [`../tools/`](../tools/) | Separate bounded verification infrastructure |
 
 "Master" or 總圖靈機 means the **project-wide research architecture**, not a *total Turing machine* deciding termination for every input. This release designates the photonic experiment as the latest **research entry point**; it does not claim that all modules have been merged into a single 2 KB executable.
 
-## Executable
+## Current exact TM-009 research executable
+
+```bash
+bash UGTM_UCP_Exact_Encoding_2KB.sh 10 0.6 0.3 1
+```
+
+The fourth argument is **`u`**, an exact rational coordinate parameter, **not** the angular frequency `w` used by the original photonic demo. Inputs `T, v/c, frame/c, u` use exact decimal/fraction strings. The exact companion computes rational `tau_squared`, Lorentz-frame algebraic equivalence, rational three-state probabilities `(1, 2u², u⁴)/(1+u²)²`, symbolic Shannon entropy, the finite interior-information-coordinate relation `I_u=8/(1+u²)²`, and G257 certificate roundtrip. It outputs symbolic radicals rather than approximating them numerically.
+
+The exact variant **does not implement all Brainfuck interpreter operations** or a real quantum/light experiment, and it does not itself model a physically evolving `u(tau)`. The content-verified active loader, permanent machine registry, and additional tests live in [Cosmic_Rosetta_Stone TM-009](https://github.com/letsgo0226/Cosmic_Rosetta_Stone/blob/main/永久記憶/圖靈機/TM-009-Photonic-Singularity-UGTM.md).
+
+## Historical floating-point executable
 
 ```bash
 bash Photonic_Singularity_Universal_God_Turing_Machine.sh 10 0.6 0.3 0.2
